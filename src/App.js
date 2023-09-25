@@ -1,10 +1,12 @@
 import './App.css';
-import MainComponent from './MainComponent';
+import Table1Component from './Table1Component';
+import Table2Component from './Table2Component';
 
 function App() {
   return (
     <div className="App">
-     <MainComponent />
+      <Table1Component />
+      <Table2Component />
     </div>
   );
 }
