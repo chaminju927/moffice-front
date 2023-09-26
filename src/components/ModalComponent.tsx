@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { LabelItem } from '../../../teamproject/backend-app/app/src/main/resources/static/assets/vendor/chart.js/types/index';
 
 function ModalComponent({  }) : JSX.Element {
     const [ modalState, setModalState ] = useState<boolean>(true);
