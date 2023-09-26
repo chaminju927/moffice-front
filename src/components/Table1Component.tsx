@@ -8,22 +8,29 @@ import FormLabel from '@mui/material/FormLabel';
 import { RadioGroup } from '@mui/material';
 //import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import SearchIcon from '@mui/icons-material/Search';
+import ModalComponent from './ModalComponent';
 
 
 function Table1Component(): JSX.Element  {
-  //const [ isModalOpen, setIsModalOpen ] = React.useState<boolean>(false);
+  const [ isModalOpen, setIsModalOpen ] = React.useState<boolean>(false);
 
-  // const openModal  = () => {
-  //   setIsModalOpen(true);
-  //   return (
-  //     <ModalComponent isOpen={isModalOpen} />
-  //   );
-  // }
+  const openModal  = () => {
+    setIsModalOpen(true);
+    return (
+      <ModalComponent />
+    );
+  }
   //const closeModal = () => setIsModalOpen(false);
 
-  const newWindow = () => {
-    window.open("/new")
-  }
+  //const openWindow = () => {
+    
+  //   const newWindow = window.open('/new', '_blank');
+  //   if (newWindow) {
+  //     newWindow.document.write('<div id="modal-root"></div>');
+      
+  //     return <ModalComponent />
+  //   }
+  // }
   const BtnIcon = styled('span')(() => ({  //radiobtn 클릭 전
     borderRadius: '50%',
     width: 19,
@@ -42,6 +49,8 @@ function Table1Component(): JSX.Element  {
       backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
       content: '""',
     },
+    outline: 'none', // 포커스 스타일 무효화
+    boxShadow: 'none', // 그림자 스타일 무효화
   });
 
   function RadioBtn(props: RadioProps) {
@@ -70,7 +79,7 @@ function Table1Component(): JSX.Element  {
             <td>
                 <div className="checklist" >
                   <div className="formRadio">
-                    <RadioGroup defaultValue="all">
+                    <RadioGroup defaultValue="all" style={{ flexDirection: 'row' }}>
                       <FormControlLabel value="all" control={<RadioBtn />} label="전체" />
                       <FormControlLabel value="normal" control={<RadioBtn />} label="정상" />
                       <FormControlLabel value="cancel" control={<RadioBtn />} label="취소" />
@@ -87,7 +96,7 @@ function Table1Component(): JSX.Element  {
             </td>
             <td className="txtRight">
               <div>
-                <button onClick={newWindow} className="btnRound bgGreen" >출장신청</button>
+                <button onClick={openModal} className="btnRound bgGreen" >출장신청</button>
               </div>
             </td>
             </tr>
@@ -96,5 +105,4 @@ function Table1Component(): JSX.Element  {
       </div>
   );
 }
-
 export default Table1Component;

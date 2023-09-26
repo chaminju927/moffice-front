@@ -15,11 +15,11 @@ function Table2Component(): JSX.Element {
       <div className="tableTop">
           <p>총 0건/ 0페이지</p>
       </div>
-      <div className='w100'>
+      <div className='w100' style={{marginLeft: '10%'}}>
         <TableContainer>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table  className="table" sx={{ minWidth: 650, width: '100%' }}>
             <TableHead>
-                <TableRow>
+                <TableRow >
                   <TableCell>구분</TableCell>
                   <TableCell align="right">유형</TableCell>
                   <TableCell align="right">시작일시</TableCell>
