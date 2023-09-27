@@ -26,10 +26,26 @@ body {
 .bg_gray {
   background-color: #ebeef3;
 }
-#header-right {
-  display: flex;
+header .floatL {
+  height: 100%;
+  padding: 19px 20px 21px 40px;
+  line-height: 13px;
 }
-
+header .floatL .notice {
+  padding: 1px 5px;
+  background-color: #363a54;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 11px;
+}
+.floatL {
+  float: left;
+}
+.floatR {
+  float: right;
+}
 .tablePage {
   float: right;
 }

@@ -7,8 +7,12 @@ import FormLabel from "@mui/material/FormLabel";
 import { RadioGroup } from "@mui/material";
 //import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import SearchIcon from "@mui/icons-material/Search";
-import ModalComponent from "./ModalComponent";
-// import { Routes, Route, Link } from "react-router-dom";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 
 function Table1Component(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
@@ -54,14 +58,18 @@ function Table1Component(): JSX.Element {
   return (
     <div>
       <header id="notice">
-        <span>공지</span>
-        <span>2023-03-03 제이니스 근무 수칙</span>
-
-        <div id="header-right">
-          <span>제이니스</span>
-          <span></span>
-          <span>한국어</span>
+        <div className="floatL">
+          <span>공지</span>
+          <span>2023-03-03 제이니스 근무 수칙</span>
         </div>
+        <div className="floatR"></div>
+
+        {/* <ul className="floatR">
+          <li>
+            <h2>제이니스</h2>
+          </li>
+          <li></li>
+        </ul> */}
       </header>
 
       <h2>출장관리</h2>
@@ -115,6 +123,49 @@ function Table1Component(): JSX.Element {
           </td>
         </tr>
       </table>
+
+      <div className="tableTop">
+        <p>총 0건/ 0페이지</p>
+      </div>
+      <div className="w100" style={{ marginLeft: "10%" }}>
+        <TableContainer>
+          <Table
+            className="table horizontal"
+            sx={{ minWidth: 650, width: "100%" }}
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell>구분</TableCell>
+                <TableCell align="right">유형</TableCell>
+                <TableCell align="right">시작일시</TableCell>
+                <TableCell align="right">종료일시</TableCell>
+                <TableCell align="right">사유</TableCell>
+                <TableCell align="right">등록일시</TableCell>
+                <TableCell align="right">취소일시</TableCell>
+                <TableCell align="right">상태</TableCell>
+                <TableCell align="right">결재</TableCell>
+                <TableCell align="right">관리</TableCell>
+                <TableCell align="right">결재상세</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell colSpan={11}> 조회된 데이터가 없습니다</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+
+      <div className="tablePage">
+        <div id="paging">
+          <select id="selectView">
+            <option value="10">10개씩</option>
+            <option value="20">20개씩</option>
+            <option value="30">30개씩</option>
+          </select>
+        </div>
+      </div>
     </div>
   );
 }
