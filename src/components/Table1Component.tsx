@@ -5,7 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { RadioGroup } from "@mui/material";
-//import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -55,29 +55,25 @@ function Table1Component(): JSX.Element {
   const searchIcon = () => {
     return <SearchIcon />;
   };
+
   return (
     <div
       className="container"
       style={{ display: "flex", flexDirection: "column" }}
     >
-      <header>
-        <div className="floatL">
-          <span className="notice">공지</span>
-          <ul>
-            {/* <ul style="display:inline-block;width:400px;margin-left:5px;">
-             */}
+      <div className="header-container">
+        <header>
+          <div className="floatL">
+            <span className="notice">공지</span>
+            <span className="ellipsis">
+              &nbsp;2023-03-03&nbsp;·&nbsp;제이니스 재택근무 수칙
+            </span>
+          </div>
+          {/*
+          <div className="floatR">
+            <h2 className="companyName">제이니스</h2>
 
-            <li>
-              <span className="ellipsis">
-                2023-03-03&nbsp;·&nbsp;제이니스 재택근무 수칙
-              </span>
-            </li>
-          </ul>
-        </div>
-        <ul className="floatR">
-          <h2 className="companyName">제이니스</h2>
-
-          {/* <li>
+             <li>
             <button
               type="button"
               className="dtlView"
@@ -105,9 +101,10 @@ function Table1Component(): JSX.Element {
                 </a>
               </li> 
             </ul>
-          </li>*/}
-        </ul>
-      </header>
+          </li>
+          </div>*/}
+        </header>
+      </div>
 
       <form>
         <h2 className="mainH2">출장관리</h2>
@@ -141,8 +138,47 @@ function Table1Component(): JSX.Element {
             </td>
             <td className="txtCenter">
               <div className="dateControl">
-                <input type="text" placeholder="YYYY.MM.DD" title="시작일" /> ~
-                <input type="text" placeholder="YYYY.MM.DD" title="종료일" />
+                <div style={{ position: "relative", display: "inline-block" }}>
+                  <input
+                    type="text"
+                    placeholder="YYYY.MM.DD"
+                    title="시작일"
+                    style={{
+                      width: "140px",
+                      paddingRight: "30px",
+                    }}
+                  />
+                  <CalendarTodayOutlinedIcon
+                    style={{
+                      position: "absolute",
+                      right: "10px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "gray",
+                    }}
+                  />
+                </div>
+                ~
+                <div style={{ position: "relative", display: "inline-block" }}>
+                  <input
+                    type="text"
+                    placeholder="YYYY.MM.DD"
+                    title="종료일"
+                    style={{
+                      width: "140px",
+                      paddingRight: "30px",
+                    }}
+                  />
+                  <CalendarTodayOutlinedIcon
+                    style={{
+                      position: "absolute",
+                      right: "10px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "gray",
+                    }}
+                  />
+                </div>
                 <button className="btns bgBlue search">검색</button>
               </div>
             </td>
