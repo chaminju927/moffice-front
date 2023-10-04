@@ -8,9 +8,11 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Table1Component from "./Table1Component";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 
 function ModalComponent(): JSX.Element {
-  const [modalState, setModalState] = useState<boolean>(true);
+  //const [modalState, setModalState] = useState<boolean>(true);
   // const modalStyles = {
 
   // }
@@ -37,9 +39,9 @@ function ModalComponent(): JSX.Element {
     createData1(20190502, "제품팀", "이승구", "프로", "선택"),
   ];
 
-  //   const closeModal: () => void = (): void => {
-  //     setModalState(false);
-  //   };
+  const closeModal: () => void = () => {
+    window.open("/");
+  };
 
   return (
     <div className="popBackground">
@@ -64,20 +66,52 @@ function ModalComponent(): JSX.Element {
             <div className="item1">신청일</div>
             <div className="item">
               <div className="dateControl">
-                <input type="text" placeholder="YYYY.MM.DD" title="시작일" /> ~
-                <input type="text" placeholder="YYYY.MM.DD" title="종료일" />
-                {/* <FormGroup>
-                  <FormControlLabel
-
-                    control={
-                      <Checkbox
-                        defaultChecked
-                        sx={{ backgroundcolor: "#00c0aa" }}
-                      />
-                    }
-                    label="종일 일정"
+                <div style={{ position: "relative", display: "inline-block" }}>
+                  <input type="text" placeholder="YYYY.MM.DD" title="시작일" />
+                  <CalendarTodayOutlinedIcon
+                    style={{
+                      position: "absolute",
+                      right: "5px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "gray",
+                    }}
                   />
-                </FormGroup> */}
+                </div>
+                &nbsp;~
+                <div style={{ position: "relative", display: "inline-block" }}>
+                  <input type="text" placeholder="YYYY.MM.DD" title="종료일" />
+                  <CalendarTodayOutlinedIcon
+                    style={{
+                      position: "absolute",
+                      right: "5px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "gray",
+                    }}
+                  />
+                </div>
+                <div
+                  style={{ position: "relative", display: "inline-block" }}
+                  className="checkAllday"
+                >
+                  <FormGroup>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          defaultChecked
+                          sx={{
+                            color: "#00c0aa",
+                            "&.Mui-checked": {
+                              color: "#00c0aa",
+                            },
+                          }}
+                        />
+                      }
+                      label="종일 일정"
+                    />
+                  </FormGroup>
+                </div>
               </div>
             </div>
           </div>
@@ -131,7 +165,9 @@ function ModalComponent(): JSX.Element {
 
           <div id="tableContainer">
             <div className="item1">결재자 선택</div>
-            <div className="item">결재자를 선택해주세요.</div>
+            <div className="item">
+              <textarea>결재자를 선택해주세요.</textarea>
+            </div>
           </div>
 
           <div id="tableContainer">
@@ -139,6 +175,15 @@ function ModalComponent(): JSX.Element {
             <div className="item">
               <TableContainer className="subTable">
                 <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>이름/사번</TableCell>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>검색버튼</TableCell>
+                    </TableRow>
+                  </TableHead>
                   <TableHead>
                     <TableRow>
                       <TableCell>사번</TableCell>
@@ -159,9 +204,11 @@ function ModalComponent(): JSX.Element {
           </div>
         </section>
 
-        {/* <div className="popBtnWrap">
-          <button onClick={closeModal}>신청</button>
-        </div> */}
+        <div className="popBtnWrap">
+          <button className="btns bgBlue apply" onClick={closeModal}>
+            신청
+          </button>
+        </div>
       </form>
     </div>
   );

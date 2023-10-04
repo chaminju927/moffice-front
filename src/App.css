@@ -148,6 +148,7 @@ button {
   font-size: 13px;
   font-weight: 500;
 }
+
 /*Table1Component*/
 .RadioBtn:focus {
   outline: none;
@@ -211,7 +212,7 @@ btn:사각버튼 / btns:아이콘 사각버튼
   margin-left: 10px;
   width: 140px;
   height: 28px;
-  /* background: #fff url(/resources/img/btn/btn_calendar.png) no-repeat right 10px top 4px; */
+  vertical-align: middle;
   background: #fff no-repeat right 10px top 4px;
   cursor: pointer;
 }
@@ -269,11 +270,12 @@ tr {
   flex: 500px;
   flex-direction: row;
   flex-wrap: nowrap;
-  /* justify-content: space-between; */
-  /* border: 1px solid blue; */
   width: 750px;
   /* height: 780px; */
   padding: 0;
+  margin-left: 50px;
+  margin-top: 0;
+  border-top: #d2d6e0;
 }
 .item1 {
   flex-basis: 150px;
@@ -295,11 +297,12 @@ tr {
   padding: 5px;
 }
 .popWrap .popTit {
-  height: 50px;
+  height: 30px;
   padding: 10px 50px 10px 20px;
   border: 1px solid #bcc2c9;
   background-color: #363a54;
   text-align: left;
+  margin-top: 0;
 }
 .popTit {
   font-size: 16px;
@@ -320,4 +323,15 @@ tr {
 }
 .popWrap .tableWrap {
   padding: 16px 20px;
+}
+.popBtnWrap {
+  display: flex;
+  margin-top: 25px;
+  margin-left: 350px;
+}
+.checkAllday {
+  margin-left: auto;
+}
+.apply {
+  width: 150px;
 }
