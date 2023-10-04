@@ -16,7 +16,7 @@ body {
   margin: 0 auto;
   max-width: 1200px;
   padding: 20px;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 .mainH2 {
   margin-top: 20px;
@@ -247,7 +247,8 @@ input {
   color: #444;
 }
 .table th {
-  background-color: #f6f8fa;
+  /* background-color: #f6f8fa; */
+
   text-align: center;
   color: #30343b;
 }

@@ -7,6 +7,7 @@ import FormLabel from "@mui/material/FormLabel";
 import { RadioGroup } from "@mui/material";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import SearchIcon from "@mui/icons-material/Search";
+import Button from "@mui/material/Button";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -51,10 +52,6 @@ function Table1Component(): JSX.Element {
       />
     );
   }
-
-  const searchIcon = () => {
-    return <SearchIcon />;
-  };
 
   return (
     <div
@@ -179,7 +176,15 @@ function Table1Component(): JSX.Element {
                     }}
                   />
                 </div>
-                <button className="btns bgBlue search">검색</button>
+                <Button
+                  className="bgBlue btns"
+                  variant="contained"
+                  size="small"
+                  startIcon={<SearchIcon />}
+                >
+                  검색
+                </Button>
+                {/* <button className="btns bgBlue search">검색</button> */}
               </div>
             </td>
             <td className="txtRight">
