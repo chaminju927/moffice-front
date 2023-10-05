@@ -138,7 +138,7 @@ function Table1Component(): JSX.Element {
                 <div style={{ position: "relative", display: "inline-block" }}>
                   <input
                     type="text"
-                    placeholder="YYYY.MM.DD"
+                    placeholder="2023-10-05"
                     title="시작일"
                     style={{
                       width: "140px",
@@ -152,18 +152,18 @@ function Table1Component(): JSX.Element {
                       top: "50%",
                       transform: "translateY(-50%)",
                       color: "gray",
+                      width: "20",
                     }}
                   />
                 </div>
-                ~
+                &nbsp;&nbsp;~
                 <div style={{ position: "relative", display: "inline-block" }}>
                   <input
                     type="text"
-                    placeholder="YYYY.MM.DD"
+                    placeholder="2024-01-03"
                     title="종료일"
                     style={{
                       width: "140px",
-                      paddingRight: "30px",
                     }}
                   />
                   <CalendarTodayOutlinedIcon
@@ -173,14 +173,15 @@ function Table1Component(): JSX.Element {
                       top: "50%",
                       transform: "translateY(-50%)",
                       color: "gray",
+                      width: "20",
                     }}
                   />
                 </div>
                 <Button
                   className="bgBlue btns"
                   variant="contained"
-                  size="small"
-                  startIcon={<SearchIcon />}
+                  style={{ backgroundColor: "#363a54" }}
+                  startIcon={<SearchIcon style={{ width: 20 }} />}
                 >
                   검색
                 </Button>
@@ -218,21 +219,23 @@ function Table1Component(): JSX.Element {
               <TableHead>
                 <TableRow>
                   <TableCell>구분</TableCell>
-                  <TableCell align="right">유형</TableCell>
-                  <TableCell align="right">시작일시</TableCell>
-                  <TableCell align="right">종료일시</TableCell>
-                  <TableCell align="right">사유</TableCell>
-                  <TableCell align="right">등록일시</TableCell>
-                  <TableCell align="right">취소일시</TableCell>
-                  <TableCell align="right">상태</TableCell>
-                  <TableCell align="right">결재</TableCell>
-                  <TableCell align="right">관리</TableCell>
-                  <TableCell align="right">결재상세</TableCell>
+                  <TableCell>유형</TableCell>
+                  <TableCell>시작일시</TableCell>
+                  <TableCell>종료일시</TableCell>
+                  <TableCell>사유</TableCell>
+                  <TableCell>등록일시</TableCell>
+                  <TableCell>취소일시</TableCell>
+                  <TableCell>상태</TableCell>
+                  <TableCell>결재</TableCell>
+                  <TableCell>관리</TableCell>
+                  <TableCell>결재상세</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell colSpan={11}> 조회된 데이터가 없습니다</TableCell>
+                  <TableCell colSpan={11} align="center">
+                    조회된 데이터가 없습니다
+                  </TableCell>
                 </TableRow>
               </TableBody>
             </Table>

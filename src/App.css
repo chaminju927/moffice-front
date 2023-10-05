@@ -134,7 +134,7 @@ tbody {
   display: table-row-group;
 }
 /* input, */
-select,
+
 textarea,
 button {
   vertical-align: middle;
@@ -280,6 +280,7 @@ tr {
 }
 .item1 {
   flex-basis: 150px;
+  color: black;
   font-size: 0.8;
   font-weight: 500;
   border-left: 1px solid #d2d6e0;
@@ -297,6 +298,9 @@ tr {
   border-right: 1px solid #d2d6e0;
   padding: 5px;
 }
+.item-top {
+  border-top: 1px solid #d2d6e0;
+}
 .popWrap .popTit {
   height: 30px;
   padding: 10px 50px 10px 20px;
@@ -313,11 +317,12 @@ tr {
   background-color: white;
 }
 .textArea {
-  width: 450px;
+  width: 490px;
+  border: 1px solid #bcc2c9;
 }
 .subTable {
-  border: 1px solid black;
-  font-size: 13px;
+  border: 1px solid #bcc2c9;
+  font-size: 8px;
 }
 .th {
   background-color: #ebeef3;
@@ -331,8 +336,11 @@ tr {
   margin-left: 350px;
 }
 .checkAllday {
-  margin-left: auto;
+  margin-left: 20px;
 }
 .apply {
   width: 150px;
+}
+#seldaoffType {
+  border: 1px solid #bcc2c9;
 }

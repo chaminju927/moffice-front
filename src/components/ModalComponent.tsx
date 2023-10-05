@@ -9,6 +9,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import SearchIcon from "@mui/icons-material/Search";
 
 function ModalComponent(): JSX.Element {
   //const [modalState, setModalState] = useState<boolean>(true);
@@ -50,8 +53,8 @@ function ModalComponent(): JSX.Element {
         </div>
         <section id="flexTable">
           <div id="tableContainer">
-            <div className="item1">출장명</div>
-            <div className="item">
+            <div className="item1 item-top">출장명</div>
+            <div className="item item-top">
               <select name="encDayoffCode" id="selDaoffType" title="출장명">
                 <option value="1">[국내]시스템패치</option>
                 <option value="2">[국내]영업활동</option>
@@ -63,9 +66,17 @@ function ModalComponent(): JSX.Element {
 
           <div id="tableContainer">
             <div className="item1">신청일</div>
-            <div className="item">
+            <div
+              className="item"
+              style={{ position: "relative", display: "inline-block" }}
+            >
               <div className="dateControl">
-                <div style={{ position: "relative", display: "inline-block" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    display: "inline-block",
+                  }}
+                >
                   <input type="text" placeholder="YYYY.MM.DD" title="시작일" />
                   <CalendarTodayOutlinedIcon
                     style={{
@@ -74,6 +85,7 @@ function ModalComponent(): JSX.Element {
                       top: "50%",
                       transform: "translateY(-50%)",
                       color: "gray",
+                      width: "20",
                     }}
                   />
                 </div>
@@ -87,6 +99,7 @@ function ModalComponent(): JSX.Element {
                       top: "50%",
                       transform: "translateY(-50%)",
                       color: "gray",
+                      width: "20",
                     }}
                   />
                 </div>
@@ -100,7 +113,6 @@ function ModalComponent(): JSX.Element {
                         <Checkbox
                           defaultChecked
                           sx={{
-                            color: "#00c0aa",
                             "&.Mui-checked": {
                               color: "#00c0aa",
                             },
@@ -128,24 +140,29 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">결재자 목록</div>
             <div className="item">
+              {/* <div id ="subContainer">
+                <div id="">
+
+                </div>
+              </div> */}
               <TableContainer className="subTable">
                 <Table>
                   <TableHead>
                     <TableRow>
-                      <TableCell style={{ height: "10px" }}>사번</TableCell>
-                      <TableCell style={{ height: "10px" }}>부서</TableCell>
-                      <TableCell style={{ height: "10px" }}>이름</TableCell>
-                      <TableCell style={{ height: "10px" }}>직위</TableCell>
-                      <TableCell style={{ height: "10px" }}>선택</TableCell>
+                      <TableCell>사번</TableCell>
+                      <TableCell>부서</TableCell>
+                      <TableCell>이름</TableCell>
+                      <TableCell>직위</TableCell>
+                      <TableCell>선택</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {rows1.map((row) => (
                       <TableRow
                         key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
+                        // sx={{
+                        //   "&:last-child td, &:last-child th": { border: 0 },
+                        // }}
                       >
                         <TableCell component="th" scope="row">
                           {row.name}
@@ -165,7 +182,10 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">결재자 선택</div>
             <div className="item">
-              <textarea>결재자를 선택해주세요.</textarea>
+              <textarea
+                className="textArea"
+                placeholder="결재자를 선택해주세요"
+              ></textarea>
             </div>
           </div>
 
@@ -177,10 +197,23 @@ function ModalComponent(): JSX.Element {
                   <TableHead>
                     <TableRow>
                       <TableCell>이름/사번</TableCell>
-                      <TableCell></TableCell>
-                      <TableCell></TableCell>
-                      <TableCell></TableCell>
-                      <TableCell>검색버튼</TableCell>
+                      <TableCell colSpan={3}></TableCell>
+                      <TableCell>
+                        <Button
+                          className=" btns"
+                          variant="contained"
+                          style={{
+                            backgroundColor: "#363a54",
+                            marginRight: "0",
+                            fontSize: "0.5rem",
+                          }}
+                          startIcon={
+                            <SearchIcon style={{ width: 18, margin: 0 }} />
+                          }
+                        >
+                          검색
+                        </Button>
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableHead>
@@ -199,7 +232,12 @@ function ModalComponent(): JSX.Element {
 
           <div id="tableContainer">
             <div className="item1">참조자 선택</div>
-            <div className="item">추가된 데이터가 없습니다.</div>
+            <div className="item">
+              <textarea
+                className="textArea"
+                placeholder="추가된 데이터가 없습니다."
+              ></textarea>
+            </div>
           </div>
         </section>
 
