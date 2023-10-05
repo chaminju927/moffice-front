@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ReactNode } from "react";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -9,15 +9,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
+import MUITable from "@mui/material/Table";
+import ModalTableComponent from "./ModalTableComponent";
 
 function ModalComponent(): JSX.Element {
-  //const [modalState, setModalState] = useState<boolean>(true);
-  // const modalStyles = {
-
-  // }
   useEffect(() => {}, []);
 
   function createData1(
@@ -40,6 +37,26 @@ function ModalComponent(): JSX.Element {
     createData1(20190201, "제이니스", "박상영", "이사", "선택"),
     createData1(20190502, "제품팀", "이승구", "프로", "선택"),
   ];
+  interface CustomTableProps {
+    children: ReactNode;
+  }
+
+  const CustomTable: React.FC<CustomTableProps> = ({ children }) => {
+    return (
+      <MUITable
+        sx={{
+          borderCollapse: "collapse",
+          "& th, & td": {
+            border: "1px solid #d2d6e0",
+            padding: "8px", // 필요에 따라 조절
+            textAlign: "center",
+          },
+        }}
+      >
+        {children}
+      </MUITable>
+    );
+  };
 
   const closeModal: () => void = () => {
     window.open("/");
@@ -63,7 +80,6 @@ function ModalComponent(): JSX.Element {
               </select>
             </div>
           </div>
-
           <div id="tableContainer">
             <div className="item1">신청일</div>
             <div
@@ -126,7 +142,6 @@ function ModalComponent(): JSX.Element {
               </div>
             </div>
           </div>
-
           <div id="tableContainer">
             <div className="item1">신청 사유</div>
             <div className="item">
@@ -140,13 +155,8 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">결재자 목록</div>
             <div className="item">
-              {/* <div id ="subContainer">
-                <div id="">
-
-                </div>
-              </div> */}
               <TableContainer className="subTable">
-                <Table>
+                <CustomTable>
                   <TableHead>
                     <TableRow>
                       <TableCell>사번</TableCell>
@@ -158,23 +168,16 @@ function ModalComponent(): JSX.Element {
                   </TableHead>
                   <TableBody>
                     {rows1.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        // sx={{
-                        //   "&:last-child td, &:last-child th": { border: 0 },
-                        // }}
-                      >
-                        <TableCell component="th" scope="row">
-                          {row.name}
-                        </TableCell>
-                        <TableCell align="right">{row.no}</TableCell>
+                      <TableRow key={row.no}>
+                        <TableCell>{row.no}</TableCell>
                         <TableCell align="right">{row.part}</TableCell>
                         <TableCell align="right">{row.name}</TableCell>
                         <TableCell align="right">{row.grade}</TableCell>
+                        <TableCell align="right">{row.option}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
-                </Table>
+                </CustomTable>
               </TableContainer>
             </div>
           </div>
@@ -188,12 +191,12 @@ function ModalComponent(): JSX.Element {
               ></textarea>
             </div>
           </div>
-
           <div id="tableContainer">
             <div className="item1">참조자 목록</div>
             <div className="item">
-              <TableContainer className="subTable">
-                <Table>
+              <ModalTableComponent />
+              {/* <TableContainer className="subTable">
+               <Table>
                   <TableHead>
                     <TableRow>
                       <TableCell>이름/사번</TableCell>
@@ -225,11 +228,10 @@ function ModalComponent(): JSX.Element {
                       <TableCell>선택</TableCell>
                     </TableRow>
                   </TableHead>
-                </Table>
-              </TableContainer>
+                </Table> 
+              </TableContainer>*/}
             </div>
           </div>
-
           <div id="tableContainer">
             <div className="item1">참조자 선택</div>
             <div className="item">

@@ -216,6 +216,14 @@ btn:사각버튼 / btns:아이콘 사각버튼
   background: #fff no-repeat right 10px top 4px;
   cursor: pointer;
 }
+.dateControl {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dateControl input[type="text"] {
+  width: 140px;
+}
 input {
   width: 100%;
   height: 26px;
@@ -248,7 +256,7 @@ input {
 }
 .table th {
   /* background-color: #f6f8fa; */
-
+  border-bottom: 2px solid #0b436d;
   text-align: center;
   color: #30343b;
 }
@@ -258,6 +266,13 @@ input {
   border-bottom: 1px solid #c5cedb;
   border-left: 1px solid #d2d6e0;
   vertical-align: middle;
+}
+.table td {
+  border-bottom: 1px solid #c5cedb;
+  border-left: 1px solid #d2d6e0; 
+}
+.table td:first-child {
+  border-left: none;
 }
 tr {
   display: table-row;
@@ -337,7 +352,15 @@ tr {
 }
 .checkAllday {
   margin-left: 20px;
+  display: flex;
+  align-items: center;
 }
+.checkAllday .MuiSvgIcon-root {
+  width: 30px; /* 필요에 따라 너비 조정 */
+  height: 20px; /* 필요에 따라 높이 조정 */
+  margin-right: 5px; /* 라디오 버튼과 레이블 사이의 간격을 추가하세요 */
+}
+
 .apply {
   width: 150px;
 }
