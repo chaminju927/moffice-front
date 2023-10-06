@@ -43,8 +43,8 @@ function ModalTableComponent(): JSX.Element {
                   variant="contained"
                   style={{
                     backgroundColor: "#363a54",
-                    marginRight: "0",
-                    fontSize: "0.5rem",
+                    margin: "0",
+                    fontSize: "0.7rem",
                   }}
                   startIcon={<SearchIcon style={{ width: 18, margin: 0 }} />}
                 >
@@ -59,7 +59,19 @@ function ModalTableComponent(): JSX.Element {
               <TableCell>부서</TableCell>
               <TableCell>이름</TableCell>
               <TableCell>직위</TableCell>
-              <TableCell>선택</TableCell>
+              <TableCell>
+                <Button
+                  className="btns"
+                  variant="outlined"
+                  style={{
+                    margin: "0",
+                    fontSize: "0.7rem",
+                    // color: "gray"
+                  }}
+                >
+                  선택
+                </Button>
+              </TableCell>
             </TableRow>
           </TableHead>
         </CustomTable>

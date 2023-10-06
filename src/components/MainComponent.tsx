@@ -1,4 +1,3 @@
-import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Radio, { RadioProps } from "@mui/material/Radio";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -15,8 +14,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-function Table1Component(): JSX.Element {
-  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
+function MainComponent(): JSX.Element {
+  // const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
 
   const BtnIcon = styled("span")(() => ({
     //radiobtn 클릭 전
@@ -66,40 +65,6 @@ function Table1Component(): JSX.Element {
               &nbsp;2023-03-03&nbsp;·&nbsp;제이니스 재택근무 수칙
             </span>
           </div>
-          {/*
-          <div className="floatR">
-            <h2 className="companyName">제이니스</h2>
-
-             <li>
-            <button
-              type="button"
-              className="dtlView"
-              id="noticeActive"
-            ></button>
-          </li> */}
-
-          {/* <li className="selectLang">
-            <a href="javascript:void(0)">한국어</a>
-
-            <ul>
-              <li>
-                <a href="javascript:goLang('ko');" lang="ko">
-                  한국어
-                </a>
-              </li>
-              <li>
-                <a href="javascript:goLang('en');" lang="en">
-                  English
-                </a>
-              </li>
-              <li>
-                <a href="javascript:goLang('ja');" lang="ja">
-                  日本語
-                </a>
-              </li> 
-            </ul>
-          </li>
-          </div>*/}
         </header>
       </div>
 
@@ -254,4 +219,4 @@ function Table1Component(): JSX.Element {
     </div>
   );
 }
-export default Table1Component;
+export default MainComponent;

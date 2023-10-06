@@ -17,6 +17,7 @@ import ModalTableComponent from "./ModalTableComponent";
 function ModalComponent(): JSX.Element {
   useEffect(() => {}, []);
 
+  //테이블 렌더링 부분 리팩토링/ props넘겨주는 부분 수정
   function createData1(
     no: number,
     part: string,
@@ -37,6 +38,8 @@ function ModalComponent(): JSX.Element {
     createData1(20190201, "제이니스", "박상영", "이사", "선택"),
     createData1(20190502, "제품팀", "이승구", "프로", "선택"),
   ];
+
+
   interface CustomTableProps {
     children: ReactNode;
   }
@@ -48,7 +51,7 @@ function ModalComponent(): JSX.Element {
           borderCollapse: "collapse",
           "& th, & td": {
             border: "1px solid #d2d6e0",
-            padding: "8px", // 필요에 따라 조절
+            padding: "8px",
             textAlign: "center",
           },
         }}
@@ -59,7 +62,7 @@ function ModalComponent(): JSX.Element {
   };
 
   const closeModal: () => void = () => {
-    window.open("/");
+    window.close();
   };
 
   return (
@@ -194,42 +197,7 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">참조자 목록</div>
             <div className="item">
-              <ModalTableComponent />
-              {/* <TableContainer className="subTable">
-               <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>이름/사번</TableCell>
-                      <TableCell colSpan={3}></TableCell>
-                      <TableCell>
-                        <Button
-                          className=" btns"
-                          variant="contained"
-                          style={{
-                            backgroundColor: "#363a54",
-                            marginRight: "0",
-                            fontSize: "0.5rem",
-                          }}
-                          startIcon={
-                            <SearchIcon style={{ width: 18, margin: 0 }} />
-                          }
-                        >
-                          검색
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>사번</TableCell>
-                      <TableCell>부서</TableCell>
-                      <TableCell>이름</TableCell>
-                      <TableCell>직위</TableCell>
-                      <TableCell>선택</TableCell>
-                    </TableRow>
-                  </TableHead>
-                </Table> 
-              </TableContainer>*/}
+              <ModalTableComponent  />
             </div>
           </div>
           <div id="tableContainer">
