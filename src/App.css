@@ -205,7 +205,7 @@ btn:사각버튼 / btns:아이콘 사각버튼
   display: inline-block;
   margin-left: 10px;
   width: 140px;
-  height: 28px;
+  /* height: 28px; */
   vertical-align: middle;
   background: #fff no-repeat right 10px top 4px;
   cursor: pointer;
@@ -354,4 +354,10 @@ tr {
 
 #seldaoffType {
   border: 1px solid #bcc2c9;
+}
+.date-picker-container {
+  height: 50px; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
 }

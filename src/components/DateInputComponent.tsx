@@ -7,22 +7,20 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
   typography: {
-    fontSize: 12,
+    fontSize: 13,
   },
-
 });
 function DateInputComponent(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
-          format="YYYY-MM-DD"
-          defaultValue={dayjs("2023-10-10")}
-          sx={{
-            width: 150,
-            margin: 0,
-          }}
-        />
+        <div className="date-picker-container">
+          <DatePicker
+            format="YYYY-MM-DD"
+            defaultValue={dayjs("2023-10-10")}
+            sx={{ width: 150,  }}
+          />
+        </div>
       </LocalizationProvider>
     </ThemeProvider>
   );

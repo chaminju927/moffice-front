@@ -9,7 +9,7 @@ function SelectBoxComponent({ selectValue }: { selectValue: any }) {
     <div>
       <select id="selectView">
         {selectValue.map((el: { val: number; name: string }) => {
-          <option value={el.val}>{el.name}</option>;
+          return <option value={el.val}>{el.name}</option>;
         })}
       </select>
     </div>

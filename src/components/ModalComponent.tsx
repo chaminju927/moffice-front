@@ -14,7 +14,7 @@ import ButtonComponent from "./ButtonComponent";
 import TextAreaComponent from "./TextAreaComponent";
 import SelectBoxComponent from "./SelectBoxComponent";
 
-interface dataType {
+export interface dataType {
   no: number;
   part: string;
   name: string;
@@ -56,7 +56,7 @@ function ModalComponent(): JSX.Element {
     { val: 1, name: "[국내]시스템패치" },
     { val: 2, name: "[국내]영업활동" },
     { val: 3, name: "[국내]외부일정" },
-    { val: 4, name: "[국내]정기점검"}
+    { val: 4, name: "[국내]정기점검" },
   ];
 
   interface CustomTableProps {
@@ -134,6 +134,7 @@ function ModalComponent(): JSX.Element {
                         />
                       }
                       label="종일 일정"
+                      // sx={{ fontSize: 5 }}
                     />
                   </FormGroup>
                 </div>
@@ -194,7 +195,7 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">참조자 목록</div>
             <div className="item">
-              <ModalTableComponent {...rows1} />
+              <ModalTableComponent rows={rows1} />
             </div>
           </div>
           <div id="tableContainer">

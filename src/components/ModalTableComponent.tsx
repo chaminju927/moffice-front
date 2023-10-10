@@ -7,6 +7,8 @@ import TableCell from "@mui/material/TableCell";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import ButtonComponent from "./ButtonComponent";
+import { TableBody } from "@mui/material";
+import { dataType } from "./ModalComponent";
 
 interface CustomTableProps {
   children: ReactNode;
@@ -28,7 +30,7 @@ const CustomTable: React.FC<CustomTableProps> = ({ children }) => {
   );
 };
 
-function ModalTableComponent(props): JSX.Element {
+function ModalTableComponent({ rows }: { rows: dataType[] }): JSX.Element {
   const [data, setData] = useState([]);
 
   return (
@@ -53,6 +55,17 @@ function ModalTableComponent(props): JSX.Element {
               <TableCell>선택</TableCell>
             </TableRow>
           </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.no}>
+                <TableCell>{row.no}</TableCell>
+                <TableCell>{row.part}</TableCell>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.grade}</TableCell>
+                <TableCell>{row.option}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
         </CustomTable>
       </TableContainer>
     </div>
