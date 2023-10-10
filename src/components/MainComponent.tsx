@@ -1,22 +1,24 @@
 import { styled } from "@mui/material/styles";
 import Radio, { RadioProps } from "@mui/material/Radio";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import { RadioGroup } from "@mui/material";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import SearchIcon from "@mui/icons-material/Search";
-import Button from "@mui/material/Button";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import DateInputComponent from "./DateInputComponent";
+import ButtonComponent from "./ButtonComponent";
+import React, { useEffect, useState } from "react";
+import SelectBoxComponent from "./SelectBoxComponent";
 
 function MainComponent(): JSX.Element {
-  // const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
+  const [selectBox, setSelectBox] = useState<string>("");
 
+  useEffect(() => {
+    setSelectBox("main");
+  }, []);
   const BtnIcon = styled("span")(() => ({
     //radiobtn 클릭 전
     borderRadius: "50%",
@@ -24,6 +26,7 @@ function MainComponent(): JSX.Element {
     height: 19,
     display: "inline-block",
     backgroundColor: "#fff",
+    fontSize: 10,
   }));
 
   const CheckedBtn = styled(BtnIcon)({
@@ -51,6 +54,11 @@ function MainComponent(): JSX.Element {
       />
     );
   }
+  const selectValue = [
+    { val: 1, name: "10개씩" },
+    { val: 2, name: "20개씩" },
+    { val: 3, name: "30개씩" },
+  ];
 
   return (
     <div
@@ -101,56 +109,13 @@ function MainComponent(): JSX.Element {
             <td className="txtCenter">
               <div className="dateControl">
                 <div style={{ position: "relative", display: "inline-block" }}>
-                  <input
-                    type="text"
-                    placeholder="2023-10-05"
-                    title="시작일"
-                    style={{
-                      width: "140px",
-                      paddingRight: "30px",
-                    }}
-                  />
-                  <CalendarTodayOutlinedIcon
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      color: "gray",
-                      width: "20",
-                    }}
-                  />
+                  <DateInputComponent />
                 </div>
-                &nbsp;&nbsp;~
+                &nbsp;~
                 <div style={{ position: "relative", display: "inline-block" }}>
-                  <input
-                    type="text"
-                    placeholder="2024-01-03"
-                    title="종료일"
-                    style={{
-                      width: "140px",
-                    }}
-                  />
-                  <CalendarTodayOutlinedIcon
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      color: "gray",
-                      width: "20",
-                    }}
-                  />
+                  <DateInputComponent />
                 </div>
-                <Button
-                  className="bgBlue btns"
-                  variant="contained"
-                  style={{ backgroundColor: "#363a54" }}
-                  startIcon={<SearchIcon style={{ width: 20 }} />}
-                >
-                  검색
-                </Button>
-                {/* <button className="btns bgBlue search">검색</button> */}
+                <ButtonComponent />
               </div>
             </td>
             <td className="txtRight">
@@ -207,11 +172,7 @@ function MainComponent(): JSX.Element {
           </TableContainer>
           <div className="tablePage">
             <div id="paging">
-              <select id="selectView">
-                <option value="10">10개씩</option>
-                <option value="20">20개씩</option>
-                <option value="30">30개씩</option>
-              </select>
+              <SelectBoxComponent selectValue ={selectValue} />
             </div>
           </div>
         </div>

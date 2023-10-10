@@ -159,7 +159,15 @@ input[type="radio"]:not(:checked) + span {
 .bgBlue {
   background-color: #363a54;
 }
-.bgBlue:hover {
+/* .bgBlue:hover {
+  background-color: #778eea;
+} */
+.Button {
+  color: #fff;
+  vertical-align: middle;
+  display: inline-block;
+}
+.Button:hover {
   background-color: #778eea;
 }
 .bgGreen {
@@ -344,9 +352,6 @@ tr {
   margin-right: 5px;
 }
 
-.apply {
-  width: 150px;
-}
 #seldaoffType {
   border: 1px solid #bcc2c9;
 }
