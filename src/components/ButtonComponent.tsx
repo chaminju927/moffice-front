@@ -1,7 +1,19 @@
 import Button from "@mui/material/Button";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import React, { useEffect, useMemo, useState } from "react";
+import {
+  ThemeProvider,
+  createMuiTheme,
+  makeStyles,
+} from "@material-ui/core/styles";
+import React, { useEffect, useMemo } from "react";
+import { Typography } from "@material-ui/core";
 
+const theme = createMuiTheme();
+
+const useStyles = makeStyles({
+  button: {
+    backgroundColor: "#363a54"
+  }
+});
 function ButtonComponent({
   showTable,
   btnName,
@@ -11,60 +23,51 @@ function ButtonComponent({
   btnName: string;
   icon?: any;
 }): JSX.Element {
-  const mainTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#363a54",
-        contrastText: "#fff",
-      },
-      secondary: {
-        main: "#778eea",
-        contrastText: "#fff",
-      },
-    },
-    typography: {
-      fontSize: 12,
-    },
-    // components: {
-    //   MuiButton: {
-    //     styleOverrides: {
-    //       root: ({ theme }) => ({
-    //         "&:hover": {
-    //           backgroundColor: theme.palette.secondary,
-    //         },
-    //       }),
-    //     },
-    //   },
-    // },
-  });
-  const roundTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#00c0aa",
-        contrastText: "#fff",
-      },
-      secondary: {
-        main: "#778eea",
-        contrastText: "#fff",
-      },
-    },
-    typography: {
-      fontSize: 12,
-    },
-  });
+  // const mainTheme = createTheme({
+  //   palette: {
+  //     primary: {
+  //       main: "#363a54",
+  //       contrastText: "#fff",
+  //     },
+  //     secondary: {
+  //       main: "#778eea",
+  //       contrastText: "#fff",
+  //     },
+  //   },
+  //   typography: {
+  //     fontSize: 12,
+  //   },
+
+  // });
+
+  // const roundTheme = createTheme({
+  //   palette: {
+  //     primary: {
+  //       main: "#00c0aa",
+  //       contrastText: "#fff",
+  //     },
+  //     secondary: {
+  //       main: "#778eea",
+  //       contrastText: "#fff",
+  //     },
+  //   },
+  //   typography: {
+  //     fontSize: 12,
+  //   },
+  // });
 
   const cmmTest = useMemo(() => {
     return () => {
       showTable?.(); //optional chaining
     };
   }, [showTable]);
-
+  const classes = useStyles();
   if (btnName === "선택") {
     return (
       <div>
-        <ThemeProvider theme={mainTheme}>
+        <ThemeProvider theme={theme}>
           <Button
-            // className="Button"
+            className={classes.button}
             size="medium"
             color="primary"
             variant="outlined"
@@ -79,7 +82,7 @@ function ButtonComponent({
   } else if (btnName === "출장신청") {
     return (
       <div>
-        <ThemeProvider theme={roundTheme}>
+        <ThemeProvider theme={theme}>
           <Button
             size="medium"
             color="primary"
@@ -98,7 +101,7 @@ function ButtonComponent({
   } else {
     return (
       <div>
-        <ThemeProvider theme={mainTheme}>
+        <ThemeProvider theme={theme}>
           <Button
             // className="Button"
             size="medium"
