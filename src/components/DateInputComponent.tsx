@@ -4,10 +4,11 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 
 const theme = createTheme({
   typography: {
-    fontSize: 13,
+    fontSize: 12,
   },
 });
 function DateInputComponent(): JSX.Element {
@@ -18,7 +19,7 @@ function DateInputComponent(): JSX.Element {
           <DatePicker
             format="YYYY-MM-DD"
             defaultValue={dayjs("2023-10-10")}
-            sx={{ width: 150,  }}
+            sx={{ width: 150 }}
           />
         </div>
       </LocalizationProvider>

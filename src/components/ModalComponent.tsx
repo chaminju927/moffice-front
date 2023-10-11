@@ -13,43 +13,30 @@ import DateInputComponent from "./DateInputComponent";
 import ButtonComponent from "./ButtonComponent";
 import TextAreaComponent from "./TextAreaComponent";
 import SelectBoxComponent from "./SelectBoxComponent";
+import CheckIcon from "@mui/icons-material/Check";
 
 export interface dataType {
   no: number;
   part: string;
   name: string;
   grade: string;
-  option: string | null;
+  // option: string | null;
 }
 function ModalComponent(): JSX.Element {
-  //const [data, setData] = useState<dataType[]>([
-  // no: 0,
-  // part: '',
-  // name: '',
-  // grade: '',
-  // option: null,
-  // ]);
-  useEffect(() => {}, []);
-  //테이블 렌더링 부분 리팩토링/ props넘겨주는 부분 수정
-  function createData1(
-    no: number,
-    part: string,
-    name: string,
-    grade: string,
-    option: string | null
-  ) {
+  //useEffect(() => {}, []);
+
+  function createData1(no: number, part: string, name: string, grade: string) {
     return {
       no,
       part,
       name,
       grade,
-      option,
     };
   }
   const rows1 = [
-    createData1(20050301, "경영지원팀", "이재준", "대표이사", ""),
-    createData1(20190201, "제이니스", "박상영", "이사", ""),
-    createData1(20190502, "제품팀", "이승구", "프로", ""),
+    createData1(20050301, "경영지원팀", "이재준", "대표이사"),
+    createData1(20190201, "제이니스", "박상영", "이사"),
+    createData1(20190502, "제품팀", "이승구", "프로"),
   ];
 
   const selectValue = [
@@ -99,27 +86,16 @@ function ModalComponent(): JSX.Element {
           </div>
           <div id="tableContainer">
             <div className="item1">신청일</div>
-            <div
-              className="item"
-              style={{ position: "relative", display: "inline-block" }}
-            >
+            <div className="item dateContainer">
               <div className="dateControl">
-                <div
-                  style={{
-                    position: "relative",
-                    display: "inline-block",
-                  }}
-                >
+                <div className="dateContainer">
                   <DateInputComponent />
                 </div>
                 &nbsp;~
-                <div style={{ position: "relative", display: "inline-block" }}>
+                <div className="dateContainer">
                   <DateInputComponent />
                 </div>
-                <div
-                  style={{ position: "relative", display: "inline-block" }}
-                  className="checkAllday"
-                >
+                <div className="checkAllday dateContainer">
                   <FormGroup>
                     <FormControlLabel
                       control={
@@ -134,7 +110,6 @@ function ModalComponent(): JSX.Element {
                         />
                       }
                       label="종일 일정"
-                      // sx={{ fontSize: 5 }}
                     />
                   </FormGroup>
                 </div>
@@ -144,11 +119,7 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">신청 사유</div>
             <div className="item">
-              <TextAreaComponent />
-              {/* <textarea
-                className="textArea"
-                placeholder="신청사유를 입력하세요"
-              ></textarea> */}
+              <TextAreaComponent content="신청사유를 입력하세요" />
             </div>
           </div>
 
@@ -157,7 +128,7 @@ function ModalComponent(): JSX.Element {
             <div className="item">
               <TableContainer className="subTable">
                 <CustomTable>
-                  <TableHead>
+                  <TableHead className="TableHead">
                     <TableRow>
                       <TableCell>사번</TableCell>
                       <TableCell>부서</TableCell>
@@ -173,7 +144,14 @@ function ModalComponent(): JSX.Element {
                         <TableCell align="right">{row.part}</TableCell>
                         <TableCell align="right">{row.name}</TableCell>
                         <TableCell align="right">{row.grade}</TableCell>
-                        <TableCell align="right">{row.option}</TableCell>
+                        <TableCell align="right">
+                          <ButtonComponent
+                            btnName="선택"
+                            icon={
+                              <CheckIcon sx={{ width: 20, marginRight: 0 }} />
+                            }
+                          />
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -185,14 +163,10 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">결재자 선택</div>
             <div className="item">
-              <TextAreaComponent />
-              {/* <textarea
-                className="textArea"
-                placeholder="결재자를 선택해주세요"
-              ></textarea> */}
+              <TextAreaComponent content="결재자를 선택해주세요" />
             </div>
           </div>
-          <div id="tableContainer">
+          <div id="tableContainer" className="listBox">
             <div className="item1">참조자 목록</div>
             <div className="item">
               <ModalTableComponent rows={rows1} />
@@ -201,20 +175,16 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">참조자 선택</div>
             <div className="item">
-              <TextAreaComponent />
-              {/* <textarea
-                className="textArea"
-                placeholder="추가된 데이터가 없습니다."
-              ></textarea> */}
+              <TextAreaComponent content="추가된 데이터가 없습니다." />
             </div>
           </div>
         </section>
 
         <div className="popBtnWrap" onClick={closeModal}>
-          {/* <button className="btns bgBlue apply" onClick={closeModal}>
-            신청
-          </button> */}
-          <ButtonComponent />
+          <ButtonComponent
+            btnName="신청"
+            icon={<CheckIcon sx={{ width: 20, marginRight: 0 }} />}
+          />
         </div>
       </form>
     </div>

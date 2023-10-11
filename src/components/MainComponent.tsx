@@ -1,7 +1,3 @@
-import { styled } from "@mui/material/styles";
-import Radio, { RadioProps } from "@mui/material/Radio";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import { RadioGroup } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,48 +8,12 @@ import DateInputComponent from "./DateInputComponent";
 import ButtonComponent from "./ButtonComponent";
 import React, { useEffect, useState } from "react";
 import SelectBoxComponent from "./SelectBoxComponent";
+import SearchIcon from "@mui/icons-material/Search";
+import RadioBtnComponent from "./RadioBtnComponent";
 
 function MainComponent(): JSX.Element {
-  const [selectBox, setSelectBox] = useState<string>("");
+  useEffect(() => {}, []);
 
-  useEffect(() => {
-    setSelectBox("main");
-  }, []);
-  const BtnIcon = styled("span")(() => ({
-    //radiobtn 클릭 전
-    borderRadius: "50%",
-    width: 19,
-    height: 19,
-    display: "inline-block",
-    backgroundColor: "#fff",
-    fontSize: 10,
-  }));
-
-  const CheckedBtn = styled(BtnIcon)({
-    borderRadius: "50%",
-    backgroundColor: "#00c0aa",
-    "&:before": {
-      display: "inline-block",
-      width: 19,
-      height: 19,
-      backgroundImage: "radial-gradient(#fff,#fff 28%,transparent 32%)",
-      content: '""',
-    },
-    outline: "none",
-    boxShadow: "none",
-  });
-
-  function RadioBtn(props: RadioProps) {
-    return (
-      <Radio
-        disableRipple
-        color="default"
-        checkedIcon={<CheckedBtn />}
-        icon={<BtnIcon />}
-        {...props}
-      />
-    );
-  }
   const selectValue = [
     { val: 1, name: "10개씩" },
     { val: 2, name: "20개씩" },
@@ -83,55 +43,36 @@ function MainComponent(): JSX.Element {
             <td>
               <div className="checklist">
                 <div className="formRadio">
-                  <RadioGroup
-                    defaultValue="all"
-                    style={{ flexDirection: "row" }}
-                  >
-                    <FormControlLabel
-                      value="all"
-                      control={<RadioBtn />}
-                      label="전체"
-                    />
-                    <FormControlLabel
-                      value="normal"
-                      control={<RadioBtn />}
-                      label="정상"
-                    />
-                    <FormControlLabel
-                      value="cancel"
-                      control={<RadioBtn />}
-                      label="취소"
-                    />
-                  </RadioGroup>
+                  <RadioBtnComponent />
                 </div>
               </div>
             </td>
             <td className="txtCenter">
               <div className="dateControl">
-                <div style={{ position: "relative", display: "inline-block" }}>
+                <div className="dateContainer">
                   <DateInputComponent />
                 </div>
                 &nbsp;~
-                <div style={{ position: "relative", display: "inline-block" }}>
+                <div className="dateContainer">
                   <DateInputComponent />
                 </div>
-                <ButtonComponent />
+                <ButtonComponent
+                  btnName="검색"
+                  icon={<SearchIcon sx={{ width: 20 }} />}
+                />
               </div>
             </td>
             <td className="txtRight">
-              <div>
-                <button
-                  onClick={() => {
-                    window.open(
-                      "/new",
-                      "new",
-                      "scrollbars=yes,resizable=no width=780 height=650, left=500,top=100"
-                    );
-                  }}
-                  className="btnRound bgGreen"
-                >
-                  출장신청
-                </button>
+              <div
+                onClick={() => {
+                  window.open(
+                    "/new",
+                    "new",
+                    "scrollbars=yes,resizable=no width=780 height=650, left=500,top=100"
+                  );
+                }}
+              >
+                <ButtonComponent btnName="출장신청" />
               </div>
             </td>
           </tr>
@@ -172,7 +113,7 @@ function MainComponent(): JSX.Element {
           </TableContainer>
           <div className="tablePage">
             <div id="paging">
-              <SelectBoxComponent selectValue ={selectValue} />
+              <SelectBoxComponent selectValue={selectValue} />
             </div>
           </div>
         </div>

@@ -16,7 +16,6 @@ body {
   margin: 0 auto;
   max-width: 1200px;
   padding: 20px;
-  /* border: 1px solid blue; */
 }
 .mainH2 {
   margin-top: 20px;
@@ -51,23 +50,19 @@ header .floatL .notice {
   font-size: 11px;
 }
 .floatL {
-  /* float: left;  */
   display: inline-block;
   vertical-align: middle;
   margin-left: 5px;
 }
 .floatR {
-  /* float: right; */
   display: inline-block;
   vertical-align: middle;
   margin-right: 5px;
 }
-.companyName {
-  display: flex;
-  align-items: center;
-  margin-right: 0;
+.dateContainer {
+  position: "relative";
+  display: "inline-block";
 }
-
 ol,
 ul {
   list-style: none;
@@ -179,17 +174,14 @@ a.btns {
   color: #fff;
   vertical-align: middle;
 }
-.btnRound {
+/* .btnRound {
   padding: 6px 10px;
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   border-radius: 20px;
   color: #fff;
   font-size: 12px;
-}
-/* button
-btn:사각버튼 / btns:아이콘 사각버튼
-*/
+} */
 .btn,
 .btns {
   height: 28px;
@@ -352,12 +344,18 @@ tr {
   margin-right: 5px;
 }
 
-#seldaoffType {
+/* #seldaoffType {
   border: 1px solid #bcc2c9;
-}
+} */
 .date-picker-container {
-  height: 50px; 
+  height: 50px;
   display: flex;
-  align-items: center; 
-  justify-content: center; 
+  align-items: center;
+  justify-content: center;
+}
+.listBox {
+  min-height: 250px;
+}
+.TableHead {
+  background-color: #ebeef3;
 }
