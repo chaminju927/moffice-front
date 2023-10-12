@@ -27,6 +27,8 @@ function ModalComponent(): JSX.Element {
     console.log(rows1);
   }, []);
   const [select, setSelect] = useState<boolean>(false);
+  const [selectedRowData, setSelectedRowData] = useState<dataType | null>(null);
+  const [selectedData, setSelectedData] = useState<dataType | null>(null);
 
   function createData(
     no: number,
@@ -156,7 +158,7 @@ function ModalComponent(): JSX.Element {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows1.map((row) => (
+                    {rows1.map((row, index) => (
                       <TableRow key={row.no}>
                         <TableCell>{row.no}</TableCell>
                         <TableCell>{row.part}</TableCell>
@@ -165,11 +167,15 @@ function ModalComponent(): JSX.Element {
                         <TableCell>
                           <ButtonComponent
                             btnName="선택"
-                            searchTable={() => setSelect(true)}
+                            searchTable={() => {
+                              const selectedData = rows1[index];
+                              setSelectedRowData(selectedData);
+                              setSelect(true);
+                            }}
                             icon={
                               <CheckIcon sx={{ width: 18, marginRight: 0 }} />
                             }
-                            rowNo={0}
+                            rowNo={index}
                           />
                         </TableCell>
                       </TableRow>
@@ -186,13 +192,18 @@ function ModalComponent(): JSX.Element {
               <div className="selectBox">
                 {select ? (
                   <TableHead>
-                    {/* {rows1[0].map((row) => ( */}
-                    <TableRow key={rows1[0].no}>
-                      <TableCell className="TableHead">1차</TableCell>
-                      <TableCell colSpan={4} className="selected" sx={{}}>
-                        {rows1[0].part} {rows1[0].name} {rows1[0].grade}
-                      </TableCell>
-                    </TableRow>
+                    {selectedData
+                      ? selectedData.map((data, index) => (
+                          <TableRow key={data.no}>
+                            <TableCell className="TableHead">
+                              {index + 1}차
+                            </TableCell>
+                            <TableCell colSpan={4} className="selected" sx={{}}>
+                              {`${data.part} ${data.name} ${data.grade}`}
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      : "결재자를 선택해주세요."}
                   </TableHead>
                 ) : (
                   <div>
