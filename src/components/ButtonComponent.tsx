@@ -1,78 +1,80 @@
 import Button from "@mui/material/Button";
-import {
-  ThemeProvider,
-  createMuiTheme,
-  makeStyles,
-} from "@material-ui/core/styles";
+// import {
+//   ThemeProvider,
+//   createMuiTheme,
+//   makeStyles,
+// } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useEffect, useMemo } from "react";
-import { Typography } from "@material-ui/core";
 
-const theme = createMuiTheme();
-
-const useStyles = makeStyles({
-  button: {
-    backgroundColor: "#363a54"
-  }
-});
 function ButtonComponent({
-  showTable,
+  searchTable,
   btnName,
   icon,
+  rowNo,
 }: {
-  showTable?: () => void;
+  searchTable?: () => void;
   btnName: string;
   icon?: any;
+  rowNo?: number;
 }): JSX.Element {
-  // const mainTheme = createTheme({
-  //   palette: {
-  //     primary: {
-  //       main: "#363a54",
-  //       contrastText: "#fff",
-  //     },
-  //     secondary: {
-  //       main: "#778eea",
-  //       contrastText: "#fff",
-  //     },
-  //   },
-  //   typography: {
-  //     fontSize: 12,
-  //   },
+  const mainTheme = createTheme({
+    palette: {
+      primary: {
+        main: "#363a54",
+        contrastText: "#fff",
+      },
+      secondary: {
+        main: "#778eea",
+        contrastText: "#fff",
+      },
+    },
+    typography: {
+      fontSize: 12,
+    },
+  });
 
-  // });
+  const roundTheme = createTheme({
+    palette: {
+      primary: {
+        main: "#00c0aa",
+        contrastText: "#fff",
+      },
+      secondary: {
+        main: "#778eea",
+        contrastText: "#fff",
+      },
+    },
+    typography: {
+      fontSize: 12,
+    },
+  });
 
-  // const roundTheme = createTheme({
-  //   palette: {
-  //     primary: {
-  //       main: "#00c0aa",
-  //       contrastText: "#fff",
-  //     },
-  //     secondary: {
-  //       main: "#778eea",
-  //       contrastText: "#fff",
-  //     },
-  //   },
-  //   typography: {
-  //     fontSize: 12,
-  //   },
-  // });
-
-  const cmmTest = useMemo(() => {
+  const Test = useMemo(() => {
     return () => {
-      showTable?.(); //optional chaining
+      searchTable?.(); //optional chaining
     };
-  }, [showTable]);
-  const classes = useStyles();
+  }, [searchTable]);
+
+  const Select = useMemo(() => {
+    return () => {
+      searchTable?.();
+      console.log(rowNo);
+      
+    };
+  }, [searchTable]);
+
   if (btnName === "선택") {
     return (
       <div>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={mainTheme}>
           <Button
-            className={classes.button}
+            className="Button"
             size="medium"
             color="primary"
             variant="outlined"
             startIcon={icon}
-            //onClick={cmmTest}
+            onClick={Select}
           >
             {btnName}
           </Button>
@@ -82,9 +84,10 @@ function ButtonComponent({
   } else if (btnName === "출장신청") {
     return (
       <div>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={roundTheme}>
           <Button
             size="medium"
+            className="buttonText"
             color="primary"
             variant="contained"
             startIcon={icon}
@@ -101,14 +104,13 @@ function ButtonComponent({
   } else {
     return (
       <div>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={mainTheme}>
           <Button
-            // className="Button"
             size="medium"
             color="primary"
             variant="contained"
             startIcon={icon}
-            onClick={cmmTest}
+            onClick={Test}
           >
             {btnName}
           </Button>

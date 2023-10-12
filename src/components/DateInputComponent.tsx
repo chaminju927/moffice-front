@@ -4,7 +4,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
 
 const theme = createTheme({
   typography: {

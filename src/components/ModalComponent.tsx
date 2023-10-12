@@ -14,30 +14,46 @@ import ButtonComponent from "./ButtonComponent";
 import TextAreaComponent from "./TextAreaComponent";
 import SelectBoxComponent from "./SelectBoxComponent";
 import CheckIcon from "@mui/icons-material/Check";
+import Typography from "@mui/material/Typography";
 
 export interface dataType {
-  no: number;
+  no?: number;
   part: string;
   name: string;
   grade: string;
-  // option: string | null;
 }
 function ModalComponent(): JSX.Element {
-  //useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(rows1);
+  }, []);
+  const [select, setSelect] = useState<boolean>(false);
 
-  function createData1(no: number, part: string, name: string, grade: string) {
+  function createData(
+    no: number,
+    part: string,
+    name: string,
+    grade: string,
+    value: number
+  ) {
     return {
       no,
       part,
       name,
       grade,
+      value,
     };
   }
   const rows1 = [
-    createData1(20050301, "경영지원팀", "이재준", "대표이사"),
-    createData1(20190201, "제이니스", "박상영", "이사"),
-    createData1(20190502, "제품팀", "이승구", "프로"),
+    createData(20050301, "경영지원팀", "이재준", "대표이사", 0),
+    createData(20190201, "제이니스", "박상영", "이사", 1),
+    createData(20190502, "제품팀", "이승구", "프로", 2),
   ];
+  // const rows2: dataType[] = [
+  //   part : rows1.map((row) => (
+  //     {row.part}
+  //   )),
+
+  // ]
 
   const selectValue = [
     { val: 1, name: "[국내]시스템패치" },
@@ -91,7 +107,7 @@ function ModalComponent(): JSX.Element {
                 <div className="dateContainer">
                   <DateInputComponent />
                 </div>
-                &nbsp;~
+                ~
                 <div className="dateContainer">
                   <DateInputComponent />
                 </div>
@@ -109,7 +125,9 @@ function ModalComponent(): JSX.Element {
                           }}
                         />
                       }
-                      label="종일 일정"
+                      label={
+                        <Typography sx={{ fontSize: 13 }}>종일 일정</Typography>
+                      }
                     />
                   </FormGroup>
                 </div>
@@ -141,15 +159,17 @@ function ModalComponent(): JSX.Element {
                     {rows1.map((row) => (
                       <TableRow key={row.no}>
                         <TableCell>{row.no}</TableCell>
-                        <TableCell align="right">{row.part}</TableCell>
-                        <TableCell align="right">{row.name}</TableCell>
-                        <TableCell align="right">{row.grade}</TableCell>
-                        <TableCell align="right">
+                        <TableCell>{row.part}</TableCell>
+                        <TableCell>{row.name}</TableCell>
+                        <TableCell>{row.grade}</TableCell>
+                        <TableCell>
                           <ButtonComponent
                             btnName="선택"
+                            searchTable={() => setSelect(true)}
                             icon={
-                              <CheckIcon sx={{ width: 20, marginRight: 0 }} />
+                              <CheckIcon sx={{ width: 18, marginRight: 0 }} />
                             }
+                            rowNo={0}
                           />
                         </TableCell>
                       </TableRow>
@@ -163,7 +183,23 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">결재자 선택</div>
             <div className="item">
-              <TextAreaComponent content="결재자를 선택해주세요" />
+              <div className="selectBox">
+                {select ? (
+                  <TableHead>
+                    {/* {rows1[0].map((row) => ( */}
+                    <TableRow key={rows1[0].no}>
+                      <TableCell className="TableHead">1차</TableCell>
+                      <TableCell colSpan={4} className="selected" sx={{}}>
+                        {rows1[0].part} {rows1[0].name} {rows1[0].grade}
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                ) : (
+                  <div>
+                    <p>결재자를 선택해주세요.</p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <div id="tableContainer" className="listBox">
@@ -175,7 +211,9 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">참조자 선택</div>
             <div className="item">
-              <TextAreaComponent content="추가된 데이터가 없습니다." />
+              <div className="selectBox">
+                <p>추가된 데이터가 없습니다</p>
+              </div>
             </div>
           </div>
         </section>

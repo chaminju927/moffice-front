@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import MUITable from "@mui/material/Table";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
@@ -21,7 +21,6 @@ const CustomTable: React.FC<CustomTableProps> = ({ children }) => {
         "& th, & td": {
           border: "1px solid #d2d6e0",
           padding: "auto",
-          //padding: "8px",
           textAlign: "center",
         },
       }}
@@ -34,6 +33,10 @@ const CustomTable: React.FC<CustomTableProps> = ({ children }) => {
 function ModalTableComponent({ rows }: { rows: dataType[] }): JSX.Element {
   //const [data, setData] = useState([]);
   const [table, setTable] = useState<boolean>(false);
+  const [select, setSelect] = useState<boolean>(false);
+  useEffect(() => {
+    //console.log(rows);
+  }, []);
 
   return (
     <div>
@@ -47,7 +50,7 @@ function ModalTableComponent({ rows }: { rows: dataType[] }): JSX.Element {
               </TableCell>
               <TableCell>
                 <ButtonComponent
-                  showTable={() => setTable(true)}
+                  searchTable={() => setTable(true)}
                   btnName="검색"
                   icon={<SearchIcon sx={{ width: 20, marginRight: 0 }} />}
                 />
@@ -72,7 +75,11 @@ function ModalTableComponent({ rows }: { rows: dataType[] }): JSX.Element {
                   <TableCell>{row.name}</TableCell>
                   <TableCell>{row.grade}</TableCell>
                   <TableCell>
-                    <ButtonComponent btnName="선택" icon={<CheckIcon />} />
+                    <ButtonComponent
+                      btnName="선택"
+                      searchTable={() => setSelect(true)}
+                      icon={<CheckIcon />}
+                    />
                   </TableCell>
                 </TableRow>
               ))}

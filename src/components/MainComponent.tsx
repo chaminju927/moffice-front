@@ -12,7 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import RadioBtnComponent from "./RadioBtnComponent";
 
 function MainComponent(): JSX.Element {
-  useEffect(() => {}, []);
+  //useEffect(() => {}, []);
 
   const selectValue = [
     { val: 1, name: "10개씩" },

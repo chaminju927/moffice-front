@@ -1,4 +1,4 @@
-import "./App.css";
+import "./css/index.css";
 import ModalComponent from "./components/ModalComponent";
 import MainComponent from "./components/MainComponent";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
