@@ -30,7 +30,6 @@ const CustomTable: React.FC<CustomTableProps> = ({ children }) => {
   );
 };
 
-// function ModalTableComponent({ rows }: { rows: dataType[] }): JSX.Element {
 function ModalTableComponent({
   selectedType,
   propFunction,
@@ -39,7 +38,7 @@ function ModalTableComponent({
   propFunction?: any;
 }): JSX.Element {
   const [table, setTable] = useState<boolean>(false);
-  const [select, setSelect] = useState<boolean>(false);
+  //const [select, setSelect] = useState<boolean>(false);
   const [selectedData, setSelectedData] = useState<dataType>();
   useEffect(() => {
     //  console.log(selectedType);
