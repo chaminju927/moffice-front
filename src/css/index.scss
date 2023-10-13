@@ -288,6 +288,9 @@ tr {
   margin-left: 50px;
   margin-top: 0;
   border-top: #d2d6e0;
+  .subTable {
+    font-size: 12px;
+  }
 }
 
 .item1 {
@@ -382,11 +385,14 @@ tr {
 }
 
 .listBox {
-  min-height: 300px;
+  max-height: 350px;
 }
 
 .TableHead {
   background-color: #ebeef3;
+  .CellFont {
+    font-size: 12px;
+  }
 }
 
 .selected {

@@ -266,6 +266,9 @@ tr {
   margin-top: 0;
   border-top: #d2d6e0;
 }
+#tableContainer .subTable {
+  font-size: 12px;
+}
 
 .item1 {
   flex-basis: 150px;
@@ -358,11 +361,14 @@ tr {
 }
 
 .listBox {
-  min-height: 300px;
+  max-height: 350px;
 }
 
 .TableHead {
   background-color: #ebeef3;
+}
+.TableHead .CellFont {
+  font-size: 12px;
 }
 
 .selected {

@@ -30,33 +30,62 @@ const CustomTable: React.FC<CustomTableProps> = ({ children }) => {
   );
 };
 
-function ModalTableComponent({ rows }: { rows: dataType[] }): JSX.Element {
-  //const [data, setData] = useState([]);
+// function ModalTableComponent({ rows }: { rows: dataType[] }): JSX.Element {
+function ModalTableComponent({
+  selectedType,
+  propFunction,
+}: {
+  selectedType: string;
+  propFunction?: any;
+}): JSX.Element {
   const [table, setTable] = useState<boolean>(false);
   const [select, setSelect] = useState<boolean>(false);
+  const [selectedData, setSelectedData] = useState<dataType>();
   useEffect(() => {
-    //console.log(rows);
+    //  console.log(selectedType);
   }, []);
+
+  function createData(
+    no: number,
+    part: string,
+    name: string,
+    grade: string
+  ): dataType {
+    return {
+      no,
+      part,
+      name,
+      grade,
+    };
+  }
+  const rows1 = [
+    createData(20050301, "경영지원팀", "이재준", "대표이사"),
+    createData(20190201, "제이니스", "박상영", "이사"),
+    createData(20190502, "제품팀", "이승구", "프로"),
+  ];
 
   return (
     <div>
       <TableContainer className="subTable">
         <CustomTable>
-          <TableHead>
-            <TableRow>
-              <TableCell className="TableHead">이름/사번</TableCell>
-              <TableCell colSpan={3}>
-                <input type="text" />
-              </TableCell>
-              <TableCell>
-                <ButtonComponent
-                  searchTable={() => setTable(true)}
-                  btnName="검색"
-                  icon={<SearchIcon sx={{ width: 20, marginRight: 0 }} />}
-                />
-              </TableCell>
-            </TableRow>
-          </TableHead>
+          {selectedType === "참조자" && (
+            <TableHead>
+              <TableRow>
+                <TableCell className="TableHead">이름/사번</TableCell>
+                <TableCell colSpan={3}>
+                  <input type="text" />
+                </TableCell>
+                <TableCell>
+                  <ButtonComponent
+                    searchTable={() => setTable(true)}
+                    btnName="검색"
+                    icon={<SearchIcon sx={{ width: 20, marginRight: 0 }} />}
+                  />
+                </TableCell>
+              </TableRow>
+            </TableHead>
+          )}
+
           <TableHead className="TableHead">
             <TableRow>
               <TableCell>사번</TableCell>
@@ -66,9 +95,10 @@ function ModalTableComponent({ rows }: { rows: dataType[] }): JSX.Element {
               <TableCell>선택</TableCell>
             </TableRow>
           </TableHead>
-          {table && (
+
+          {selectedType === "결재자" || table ? (
             <TableBody>
-              {rows.map((row) => (
+              {rows1.map((row, index) => (
                 <TableRow key={row.no}>
                   <TableCell>{row.no}</TableCell>
                   <TableCell>{row.part}</TableCell>
@@ -77,14 +107,20 @@ function ModalTableComponent({ rows }: { rows: dataType[] }): JSX.Element {
                   <TableCell>
                     <ButtonComponent
                       btnName="선택"
-                      searchTable={() => setSelect(true)}
-                      icon={<CheckIcon />}
+                      // searchTable={propFunction.bind(null, row)}
+                      searchTable={() => {
+                         //setSelectedData(row);
+                        //console.log(row);
+                        propFunction(row);
+                        // setSelect(true);
+                      }}
+                      icon={<CheckIcon sx={{ width: 18, marginRight: 0 }} />}
                     />
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
-          )}
+          ) : null}
         </CustomTable>
       </TableContainer>
     </div>

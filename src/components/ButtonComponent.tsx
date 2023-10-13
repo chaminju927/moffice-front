@@ -1,22 +1,17 @@
 import Button from "@mui/material/Button";
-// import {
-//   ThemeProvider,
-//   createMuiTheme,
-//   makeStyles,
-// } from "@material-ui/core/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import React, { useEffect, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 function ButtonComponent({
   searchTable,
   btnName,
   icon,
-  rowNo,
+  selectedRowData,
 }: {
   searchTable?: () => void;
   btnName: string;
   icon?: any;
-  rowNo?: number;
+  selectedRowData?: any;
 }): JSX.Element {
   const mainTheme = createTheme({
     palette: {
@@ -50,19 +45,14 @@ function ButtonComponent({
     },
   });
 
-  const Test = useMemo(() => {
-    return () => {
-      searchTable?.(); //optional chaining
-    };
-  }, [searchTable]);
+  // useMemo - 단순 연산
+  // useCallback - 함수
+  // 내부에 state 값이나 props 값 등등이 들어갈때 사용
 
-  const Select = useMemo(() => {
-    return () => {
-      searchTable?.();
-      console.log(rowNo);
-      
-    };
-  }, [searchTable]);
+  // const Select = useCallback(() => {
+  //   searchTable?.(); //optional chaining
+  //   //console.log(selectedRowData);
+  // }, [searchTable]);
 
   if (btnName === "선택") {
     return (
@@ -74,7 +64,7 @@ function ButtonComponent({
             color="primary"
             variant="outlined"
             startIcon={icon}
-            onClick={Select}
+            onClick={searchTable}
           >
             {btnName}
           </Button>
@@ -110,7 +100,7 @@ function ButtonComponent({
             color="primary"
             variant="contained"
             startIcon={icon}
-            onClick={Test}
+            onClick={searchTable}
           >
             {btnName}
           </Button>

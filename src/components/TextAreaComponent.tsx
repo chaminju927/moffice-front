@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { dataType } from "./ModalComponent";
 
-function TextAreaComponent({ content }: { content: string }): JSX.Element {
+function TextAreaComponent({
+  content,
+  clickedData,
+}: {
+  content?: string;
+  clickedData?: dataType;
+}): JSX.Element {
   useEffect(() => {
     //console.log({ content });
   }, []);
