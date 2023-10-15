@@ -3,16 +3,30 @@ import { dataType } from "./ModalComponent";
 
 function TextAreaComponent({
   content,
-  clickedData,
+  selectedData,
 }: {
   content?: string;
-  clickedData?: dataType;
+  selectedData?: dataType[];
 }): JSX.Element {
   useEffect(() => {
-    //console.log({ content });
-  }, []);
+    console.log(selectedData);
+  }, [selectedData]);
+  //const [tableData, setTableData] = useState(selectedData);
 
-  return (
+  return selectedData ? (
+    <div>
+      <table>
+        {selectedData.map((data, index) => (
+          <tr key={index}>
+            <td>{index + 1}차</td>
+            <td>{data.part}</td>
+            <td>{data.name}</td>
+            <td>{data.grade}</td>
+          </tr>
+        ))}
+      </table>
+    </div>
+  ) : (
     <div>
       <textarea className="textArea" placeholder={content}></textarea>
     </div>

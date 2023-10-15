@@ -5,7 +5,7 @@ import Checkbox from "@mui/material/Checkbox";
 import ModalTableComponent from "./ModalTableComponent";
 import DateInputComponent from "./DateInputComponent";
 import ButtonComponent from "./ButtonComponent";
-import TextAreaComponent from './TextAreaComponent';
+import TextAreaComponent from "./TextAreaComponent";
 import SelectBoxComponent from "./SelectBoxComponent";
 import CheckIcon from "@mui/icons-material/Check";
 import Typography from "@mui/material/Typography";
@@ -20,7 +20,7 @@ function ModalComponent(): JSX.Element {
   useEffect(() => {
     //console.log(rows1);
   }, []);
-  const [ selectedData, setSelectedData ] = useState<dataType>();
+  const [selectedData, setSelectedData] = useState<dataType[]>();
 
   const selectValue = [
     { val: 1, name: "[국내]시스템패치" },
@@ -32,9 +32,9 @@ function ModalComponent(): JSX.Element {
   const closeModal: (e: React.MouseEvent) => void = () => {
     window.close();
   };
-  // const getData = (selectedRowData) => {
-  //   setSelectedData(selectedRowData);
-  // }
+  const sendData = (data: dataType[]) => {
+    setSelectedData(data);
+  };
 
   return (
     <div className="popBackground">
@@ -93,9 +93,10 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">결재자 목록</div>
             <div className="item">
-              <ModalTableComponent selectedType="결재자" propFunction={() =>{
-                //setSelectedData();
-              }}  />
+              <ModalTableComponent
+                selectedType="결재자"
+                propFunction={sendData}
+              />
             </div>
           </div>
 
@@ -103,7 +104,10 @@ function ModalComponent(): JSX.Element {
             <div className="item1">결재자 선택</div>
             <div className="item">
               {/* <TableSelectComponent type="결재자" /> */}
-              <TextAreaComponent content="결재자를 선택해주세요"/>
+              <TextAreaComponent
+                content="결재자를 선택해주세요"
+                selectedData={selectedData}
+              />
             </div>
           </div>
           <div id="tableContainer" className="listBox">
@@ -117,7 +121,7 @@ function ModalComponent(): JSX.Element {
             <div className="item">
               <div className="selectBox">
                 {/* <TableSelectComponent type="참조자" /> */}
-                <TextAreaComponent content="참조자를 선택해주세요"/>
+                <TextAreaComponent content="참조자를 선택해주세요" />
               </div>
             </div>
           </div>

@@ -47,7 +47,7 @@ function ButtonComponent({
 
   // useMemo - 단순 연산
   // useCallback - 함수
-  // 내부에 state 값이나 props 값 등등이 들어갈때 사용
+  // 내부에 state 값이나 props 값 등이 들어갈때 사용
 
   // const Select = useCallback(() => {
   //   searchTable?.(); //optional chaining

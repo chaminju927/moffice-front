@@ -38,8 +38,7 @@ function ModalTableComponent({
   propFunction?: any;
 }): JSX.Element {
   const [table, setTable] = useState<boolean>(false);
-  //const [select, setSelect] = useState<boolean>(false);
-  const [selectedData, setSelectedData] = useState<dataType>();
+  const [selectedData, setSelectedData] = useState<dataType[]>();
   useEffect(() => {
     //  console.log(selectedType);
   }, []);
@@ -97,7 +96,7 @@ function ModalTableComponent({
 
           {selectedType === "결재자" || table ? (
             <TableBody>
-              {rows1.map((row, index) => (
+              {rows1.map((row) => (
                 <TableRow key={row.no}>
                   <TableCell>{row.no}</TableCell>
                   <TableCell>{row.part}</TableCell>
@@ -108,8 +107,6 @@ function ModalTableComponent({
                       btnName="선택"
                       // searchTable={propFunction.bind(null, row)}
                       searchTable={() => {
-                         //setSelectedData(row);
-                        //console.log(row);
                         propFunction(row);
                         // setSelect(true);
                       }}
