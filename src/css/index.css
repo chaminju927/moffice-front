@@ -385,6 +385,7 @@ tr {
 
 #sideBar {
   position: fixed;
+  margin-left: 0;
   top: 0;
   left: 0;
   width: 300px;
@@ -396,6 +397,7 @@ tr {
 #sideBar .lnb li:hover {
   background: #363a54;
   border-radius: 15px;
+  background-position: -60px center;
   color: #fff;
 }
 #sideBar .sideBox {

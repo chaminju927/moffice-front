@@ -410,6 +410,7 @@ tr {
 
 #sideBar {
   position: fixed;
+  margin-left: 0;
   top: 0;
   left: 0;
   // z-index: 9999;
@@ -421,6 +422,7 @@ tr {
   .lnb li:hover {
     background: $navy;
     border-radius: 15px;
+    background-position: -60px center;
     //border: 1px solid $white;
     color: $white;
   }
