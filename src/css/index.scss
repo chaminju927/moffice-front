@@ -1,5 +1,6 @@
-$color-gray: #ebeef3;
-$color-navy: #363a54;
+$gray: #ebeef3;
+$navy: #363a54;
+$white: #fff;
 $color-border: #c5cedb;
 $bgGreen: #00c0aa;
 
@@ -38,11 +39,11 @@ body {
   margin-left: 120px;
   font-size: 24px;
   font-weight: bold;
-  color: $color-navy;
+  color: $navy;
 }
 
 .bg_gray {
-  background-color: $color-gray;
+  background-color: $gray;
 }
 
 header .floatL {
@@ -53,11 +54,11 @@ header .floatL {
 
   .notice {
     padding: 1px 5px;
-    background-color: $color-navy;
+    background-color: $navy;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
-    color: #fff;
+    color: $white;
     font-size: 11px;
   }
 }
@@ -138,7 +139,7 @@ button {
 .bgBox {
   overflow: hidden;
   padding: 16px 20px;
-  background-color: #fff;
+  background-color: $white;
   border-radius: 10px;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
@@ -156,10 +157,10 @@ input[type="radio"]:not(:checked) + span {
 }
 
 .bgBlue {
-  background-color: $color-navy;
+  background-color: $navy;
 }
 .Button {
-  color: #fff;
+  color: $white;
   vertical-align: middle;
   display: inline-block;
 
@@ -175,7 +176,7 @@ input[type="radio"]:not(:checked) + span {
 a.btns {
   display: inline-block;
   line-height: 28px;
-  color: #fff;
+  color: $white;
   vertical-align: middle;
 }
 
@@ -184,7 +185,7 @@ a.btns {
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   border-radius: 20px;
-  color: #fff;
+  color: $white;
   font-size: 12px;
 }
 
@@ -196,7 +197,7 @@ a.btns {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  color: #fff;
+  color: $white;
   font-size: 12px;
 }
 
@@ -206,7 +207,7 @@ a.btns {
     margin-left: 10px;
     width: 140px;
     vertical-align: middle;
-    background: #fff no-repeat right 10px top 4px;
+    background: $white no-repeat right 10px top 4px;
     cursor: pointer;
 
     &[type="text"] {
@@ -245,7 +246,7 @@ input {
 
   border-top: 1px solid $color-border;
   border-right: 1px solid $color-border;
-  background-color: #fff;
+  background-color: $white;
   color: #444;
 
   th {
@@ -290,6 +291,8 @@ tr {
   border-top: #d2d6e0;
   .subTable {
     font-size: 12px;
+    border: 1px solid #bcc2c9;
+    font-size: 8px;
   }
 }
 
@@ -301,7 +304,6 @@ tr {
   border-left: 1px solid #d2d6e0;
   border-bottom: 1px solid $color-border;
   background-color: #ebeef3;
-  text-align: center;
   text-align: center;
 }
 
@@ -323,14 +325,14 @@ tr {
   height: 30px;
   padding: 10px 50px 10px 20px;
   border: 1px solid #bcc2c9;
-  background-color: $color-navy;
+  background-color: $navy;
   text-align: left;
   margin-top: 0;
 }
 
 .popTit {
   font-size: 16px;
-  color: #fff;
+  color: $white;
 }
 
 .popBackground {
@@ -340,11 +342,6 @@ tr {
 .textArea {
   width: 490px;
   border: 1px solid #bcc2c9;
-}
-
-.subTable {
-  border: 1px solid #bcc2c9;
-  font-size: 8px;
 }
 
 .th {
@@ -397,4 +394,52 @@ tr {
 
 .selected {
   text-align: center;
+}
+.selectedBox {
+  min-height: 35px;
+  text-align: center;
+  margin-top: auto;
+}
+.selectedNo {
+  font-size: 13px;
+  text-align: center;
+  width: 50px;
+}
+
+//sideBar
+
+#sideBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  // z-index: 9999;
+  width: 300px;
+  height: 100%;
+  background: $white;
+  border-radius: 0 15px 15px 0;
+  width: 250px;
+  .lnb li:hover {
+    background: $navy;
+    border-radius: 15px;
+    //border: 1px solid $white;
+    color: $white;
+  }
+  .sideBox {
+    display: flex;
+    height: 50px;
+    margin: auto;
+
+    width: 200px;
+    padding-left: 0;
+  }
+}
+ul {
+  list-style: none;
+  display: block;
+  list-style-type: disc;
+  // margin-block-start: 0;
+  // margin-block-end: 1em;
+  // margin-inline-start: 0px;
+  // margin-inline-end: 0px;
+  //padding-inline-start: 40px;
 }

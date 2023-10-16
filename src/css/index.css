@@ -268,6 +268,8 @@ tr {
 }
 #tableContainer .subTable {
   font-size: 12px;
+  border: 1px solid #bcc2c9;
+  font-size: 8px;
 }
 
 .item1 {
@@ -278,7 +280,6 @@ tr {
   border-left: 1px solid #d2d6e0;
   border-bottom: 1px solid #c5cedb;
   background-color: #ebeef3;
-  text-align: center;
   text-align: center;
 }
 
@@ -317,11 +318,6 @@ tr {
 .textArea {
   width: 490px;
   border: 1px solid #bcc2c9;
-}
-
-.subTable {
-  border: 1px solid #bcc2c9;
-  font-size: 8px;
 }
 
 .th {
@@ -373,4 +369,45 @@ tr {
 
 .selected {
   text-align: center;
+}
+
+.selectedBox {
+  min-height: 35px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.selectedNo {
+  font-size: 13px;
+  text-align: center;
+  width: 50px;
+}
+
+#sideBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  border-radius: 0 15px 15px 0;
+  width: 250px;
+}
+#sideBar .lnb li:hover {
+  background: #363a54;
+  border-radius: 15px;
+  color: #fff;
+}
+#sideBar .sideBox {
+  display: flex;
+  height: 50px;
+  margin: auto;
+  width: 200px;
+  padding-left: 0;
+}
+
+ul {
+  list-style: none;
+  display: block;
+  list-style-type: disc;
 }/*# sourceMappingURL=index.css.map */

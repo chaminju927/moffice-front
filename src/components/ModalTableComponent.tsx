@@ -38,7 +38,7 @@ function ModalTableComponent({
   propFunction?: any;
 }): JSX.Element {
   const [table, setTable] = useState<boolean>(false);
-  const [selectedData, setSelectedData] = useState<dataType[]>();
+  //const [selectedData, setSelectedData] = useState<dataType[]>();
   useEffect(() => {
     //  console.log(selectedType);
   }, []);
@@ -105,7 +105,6 @@ function ModalTableComponent({
                   <TableCell>
                     <ButtonComponent
                       btnName="선택"
-                      // searchTable={propFunction.bind(null, row)}
                       searchTable={() => {
                         propFunction(row);
                         // setSelect(true);

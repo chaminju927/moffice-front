@@ -12,15 +12,16 @@ import Typography from "@mui/material/Typography";
 
 export interface dataType {
   no?: number;
-  part?: string;
-  name?: string;
-  grade?: string;
+  part: string;
+  name: string;
+  grade: string;
 }
 function ModalComponent(): JSX.Element {
   useEffect(() => {
     //console.log(rows1);
   }, []);
-  const [selectedData, setSelectedData] = useState<dataType[]>();
+  const [selectedData, setSelectedData] = useState<dataType>();
+  const [selectedData2, setSelectedData2] = useState<dataType>();
 
   const selectValue = [
     { val: 1, name: "[국내]시스템패치" },
@@ -32,8 +33,11 @@ function ModalComponent(): JSX.Element {
   const closeModal: (e: React.MouseEvent) => void = () => {
     window.close();
   };
-  const sendData = (data: dataType[]) => {
+  const sendData = (data: dataType) => {
     setSelectedData(data);
+  };
+  const sendData2 = (data: dataType) => {
+    setSelectedData2(data);
   };
 
   return (
@@ -103,9 +107,8 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer">
             <div className="item1">결재자 선택</div>
             <div className="item">
-              {/* <TableSelectComponent type="결재자" /> */}
               <TextAreaComponent
-                content="결재자를 선택해주세요"
+                content="결재자를 선택해주세요."
                 selectedData={selectedData}
               />
             </div>
@@ -113,15 +116,20 @@ function ModalComponent(): JSX.Element {
           <div id="tableContainer" className="listBox">
             <div className="item1">참조자 목록</div>
             <div className="item">
-              <ModalTableComponent selectedType="참조자" />
+              <ModalTableComponent
+                selectedType="참조자"
+                propFunction={sendData2}
+              />
             </div>
           </div>
           <div id="tableContainer">
             <div className="item1">참조자 선택</div>
             <div className="item">
               <div className="selectBox">
-                {/* <TableSelectComponent type="참조자" /> */}
-                <TextAreaComponent content="참조자를 선택해주세요" />
+                <TextAreaComponent
+                  content="추가된 데이터가 없습니다."
+                  selectedData={selectedData2}
+                />
               </div>
             </div>
           </div>

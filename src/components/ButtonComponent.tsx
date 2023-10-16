@@ -6,21 +6,17 @@ function ButtonComponent({
   searchTable,
   btnName,
   icon,
-  selectedRowData,
-}: {
+}: //selectedRowData,
+{
   searchTable?: () => void;
   btnName: string;
   icon?: any;
-  selectedRowData?: any;
+  //selectedRowData?: any;
 }): JSX.Element {
   const mainTheme = createTheme({
     palette: {
       primary: {
         main: "#363a54",
-        contrastText: "#fff",
-      },
-      secondary: {
-        main: "#778eea",
         contrastText: "#fff",
       },
     },
@@ -33,10 +29,6 @@ function ButtonComponent({
     palette: {
       primary: {
         main: "#00c0aa",
-        contrastText: "#fff",
-      },
-      secondary: {
-        main: "#778eea",
         contrastText: "#fff",
       },
     },
