@@ -1,8 +1,11 @@
+@charset "UTF-8"; /*한글 주석처리시 설정*/
+
 $gray: #ebeef3;
 $navy: #363a54;
 $white: #fff;
 $color-border: #c5cedb;
 $bgGreen: #00c0aa;
+$pointer: pointer;
 
 $font-stack: "SpoqaHanSans", sans-serif;
 
@@ -14,10 +17,11 @@ body {
   color: #4d5256;
   word-break: break-word;
   word-wrap: break-word;
-  font-weight: 0.8;
-  font-size: small;
+  font-weight: 1;
+  font-size: smaller;
   .container {
-    margin: 0 auto;
+    //margin: auto;
+    margin-left: 200px;
     max-width: 1200px;
     padding: 20px;
   }
@@ -60,6 +64,7 @@ header .floatL {
     border-radius: 3px;
     color: $white;
     font-size: 11px;
+    margin-left: 40px;
   }
 }
 
@@ -70,7 +75,7 @@ header .floatL {
 
 button,
 select {
-  cursor: pointer;
+  cursor: $pointer;
 }
 
 button {
@@ -208,7 +213,7 @@ a.btns {
     width: 140px;
     vertical-align: middle;
     background: $white no-repeat right 10px top 4px;
-    cursor: pointer;
+    cursor: $pointer;
 
     &[type="text"] {
       width: 140px;
@@ -376,11 +381,6 @@ tr {
   align-items: center;
   justify-content: center;
 }
-
-.MuiButton-root:hover {
-  background-color: #00c0aa;
-}
-
 .listBox {
   max-height: 350px;
 }
@@ -409,39 +409,42 @@ tr {
 //sideBar
 
 #sideBar {
+  .logo {
+    margin-left: 90px;
+    margin-bottom: 50px;
+  }
   position: fixed;
   margin-left: 0;
   top: 0;
   left: 0;
-  // z-index: 9999;
-  width: 300px;
+  width: 200px;
   height: 100%;
   background: $white;
   border-radius: 0 15px 15px 0;
   width: 250px;
-  .lnb li:hover {
-    background: $navy;
-    border-radius: 15px;
-    background-position: -60px center;
-    //border: 1px solid $white;
-    color: $white;
-  }
   .sideBox {
+    //border: 1px solid black;
     display: flex;
-    height: 50px;
-    margin: auto;
-
+    height: 60px;
     width: 200px;
-    padding-left: 0;
+    vertical-align: center;
+    margin: auto;
+    &:hover {
+      /* &안붙이면 자식태그에 hover*/
+      background: $navy;
+      border-radius: 15px;
+      background-position: -60px center;
+      color: $white;
+      cursor: $pointer;
+    }
   }
-}
-ul {
-  list-style: none;
-  display: block;
-  list-style-type: disc;
-  // margin-block-start: 0;
-  // margin-block-end: 1em;
-  // margin-inline-start: 0px;
-  // margin-inline-end: 0px;
-  //padding-inline-start: 40px;
+  .btnTip {
+    height: auto;
+    margin-top: 10px;
+    margin-left: 80px;
+    padding: 1px 8px 2px;
+    border-radius: 3px;
+    background-color: rgb(54 58 84 / 70%);
+    font-size: 11px;
+  }
 }

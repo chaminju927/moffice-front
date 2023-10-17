@@ -11,20 +11,19 @@ function TextAreaComponent({
   selectedData?: dataType;
 }): JSX.Element {
   useEffect(() => {
-    if (selectedData) {
+    if (selectedData !== undefined) {
       setTableData([selectedData]);
     }
   }, [selectedData]);
 
   const [tableData, setTableData] = useState<dataType[]>([]);
-  const [deleted, setDeleted] = useState<boolean>(true);
 
-  const deleteBtn = () => {
+  const deleteBtn: () => void = () => {
     setTableData([]);
-    setDeleted(false);
+    console.log(content);
   };
 
-  if (tableData || deleted) {
+  if (tableData.length > 0) {
     return (
       <div>
         <table className="textArea selectedBox">

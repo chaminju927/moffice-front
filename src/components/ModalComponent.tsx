@@ -48,13 +48,17 @@ function ModalComponent(): JSX.Element {
         </div>
         <section id="flexTable">
           <div id="tableContainer">
-            <div className="item1 item-top">출장명</div>
+            <div className="item1 item-top">
+              <p>출장명</p>
+            </div>
             <div className="item item-top">
               <SelectBoxComponent selectValue={selectValue} />
             </div>
           </div>
           <div id="tableContainer">
-            <div className="item1">신청일</div>
+            <div className="item1">
+              <p>신청일</p>
+            </div>
             <div className="item dateContainer">
               <div className="dateControl">
                 <div className="dateContainer">
@@ -88,14 +92,18 @@ function ModalComponent(): JSX.Element {
             </div>
           </div>
           <div id="tableContainer">
-            <div className="item1">신청 사유</div>
+            <div className="item1">
+              <p className="infoTag">신청 사유</p>
+            </div>
             <div className="item">
               <TextAreaComponent content="신청사유를 입력하세요" />
             </div>
           </div>
 
           <div id="tableContainer">
-            <div className="item1">결재자 목록</div>
+            <div className="item1">
+              <p>결재자 목록</p>
+            </div>
             <div className="item">
               <ModalTableComponent
                 selectedType="결재자"
@@ -105,7 +113,9 @@ function ModalComponent(): JSX.Element {
           </div>
 
           <div id="tableContainer">
-            <div className="item1">결재자 선택</div>
+            <div className="item1">
+              <p>결재자 선택</p>
+            </div>
             <div className="item">
               <TextAreaComponent
                 content="결재자를 선택해주세요."
@@ -114,7 +124,9 @@ function ModalComponent(): JSX.Element {
             </div>
           </div>
           <div id="tableContainer" className="listBox">
-            <div className="item1">참조자 목록</div>
+            <div className="item1">
+              <p>참조자 목록</p>
+            </div>
             <div className="item">
               <ModalTableComponent
                 selectedType="참조자"
@@ -123,7 +135,9 @@ function ModalComponent(): JSX.Element {
             </div>
           </div>
           <div id="tableContainer">
-            <div className="item1">참조자 선택</div>
+            <div className="item1">
+              <p>참조자 선택</p>
+            </div>
             <div className="item">
               <div className="selectBox">
                 <TextAreaComponent

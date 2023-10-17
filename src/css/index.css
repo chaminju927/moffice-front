@@ -1,3 +1,5 @@
+@charset "UTF-8";
+/*한글 주석처리시 설정*/
 body {
   line-height: 1.3;
   margin: 0;
@@ -6,11 +8,11 @@ body {
   color: #4d5256;
   word-break: break-word;
   word-wrap: break-word;
-  font-weight: 0.8;
-  font-size: small;
+  font-weight: 1;
+  font-size: smaller;
 }
 body .container {
-  margin: 0 auto;
+  margin-left: 200px;
   max-width: 1200px;
   padding: 20px;
 }
@@ -50,6 +52,7 @@ header .floatL .notice {
   border-radius: 3px;
   color: #fff;
   font-size: 11px;
+  margin-left: 40px;
 }
 
 .tablePage {
@@ -352,10 +355,6 @@ tr {
   justify-content: center;
 }
 
-.MuiButton-root:hover {
-  background-color: #00c0aa;
-}
-
 .listBox {
   max-height: 350px;
 }
@@ -388,28 +387,37 @@ tr {
   margin-left: 0;
   top: 0;
   left: 0;
-  width: 300px;
+  width: 200px;
   height: 100%;
   background: #fff;
   border-radius: 0 15px 15px 0;
   width: 250px;
 }
-#sideBar .lnb li:hover {
+#sideBar .logo {
+  margin-left: 90px;
+  margin-bottom: 50px;
+}
+#sideBar .sideBox {
+  display: flex;
+  height: 60px;
+  width: 200px;
+  vertical-align: center;
+  margin: auto;
+}
+#sideBar .sideBox:hover {
+  /* &안붙이면 자식태그에 hover*/
   background: #363a54;
   border-radius: 15px;
   background-position: -60px center;
   color: #fff;
+  cursor: pointer;
 }
-#sideBar .sideBox {
-  display: flex;
-  height: 50px;
-  margin: auto;
-  width: 200px;
-  padding-left: 0;
-}
-
-ul {
-  list-style: none;
-  display: block;
-  list-style-type: disc;
+#sideBar .btnTip {
+  height: auto;
+  margin-top: 10px;
+  margin-left: 80px;
+  padding: 1px 8px 2px;
+  border-radius: 3px;
+  background-color: rgba(54, 58, 84, 0.7);
+  font-size: 11px;
 }/*# sourceMappingURL=index.css.map */

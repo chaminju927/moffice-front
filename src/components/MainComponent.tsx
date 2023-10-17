@@ -32,9 +32,7 @@ function MainComponent(): JSX.Element {
           <header>
             <div className="floatL">
               <span className="notice">공지</span>
-              <span className="ellipsis">
-                &nbsp;2023-03-03&nbsp;·&nbsp;제이니스 재택근무 수칙
-              </span>
+              <span>&nbsp;2023-03-03&nbsp;·&nbsp;제이니스 재택근무 수칙</span>
             </div>
           </header>
         </div>
