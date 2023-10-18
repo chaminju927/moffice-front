@@ -6,7 +6,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import DateInputComponent from "./DateInputComponent";
 import ButtonComponent from "./ButtonComponent";
-import React, { useEffect, useState } from "react";
 import SelectBoxComponent from "./SelectBoxComponent";
 import SearchIcon from "@mui/icons-material/Search";
 import RadioBtnComponent from "./RadioBtnComponent";
@@ -37,24 +36,22 @@ function MainComponent(): JSX.Element {
           </header>
         </div>
 
-        <form>
+        <form className="mainForm">
           <h2 className="mainH2">출장관리</h2>
-          <table className="tableWrap bgBox w100">
+          <table className="tableWrap bgBox">
             <tr>
               <td>
-                <div className="checklist">
-                  <div className="formRadio">
-                    <RadioBtnComponent />
-                  </div>
+                <div className="formRadio">
+                  <RadioBtnComponent />
                 </div>
               </td>
-              <td className="txtCenter">
+              <td>
                 <div className="dateControl">
-                  <div className="dateContainer">
+                  <div>
                     <DateInputComponent />
                   </div>
                   &nbsp;~
-                  <div className="dateContainer">
+                  <div>
                     <DateInputComponent />
                   </div>
                   <ButtonComponent
@@ -63,7 +60,7 @@ function MainComponent(): JSX.Element {
                   />
                 </div>
               </td>
-              <td className="txtRight">
+              <td>
                 <div
                   onClick={() => {
                     window.open(
@@ -79,43 +76,41 @@ function MainComponent(): JSX.Element {
             </tr>
           </table>
 
-          <div className="w100" style={{ marginLeft: "10%" }}>
-            <div className="tableTop">
+          <div className="mainTable">
+            <div>
               <p>총 0건/ 0페이지</p>
             </div>
             <TableContainer>
-              <Table
-                className="table horizontal"
-                sx={{ minWidth: 650, width: "100%" }}
-              >
+              <Table className="table horizontal">
                 <TableHead>
                   <TableRow>
-                    <TableCell>구분</TableCell>
                     <TableCell>유형</TableCell>
                     <TableCell>시작일시</TableCell>
                     <TableCell>종료일시</TableCell>
                     <TableCell>사유</TableCell>
                     <TableCell>등록일시</TableCell>
-                    <TableCell>취소일시</TableCell>
-                    <TableCell>상태</TableCell>
                     <TableCell>결재</TableCell>
-                    <TableCell>관리</TableCell>
                     <TableCell>결재상세</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   <TableRow>
-                    <TableCell colSpan={11} align="center">
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    {/* <TableCell colSpan={11} align="center">
                       조회된 데이터가 없습니다
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>
             <div className="tablePage">
-              <div id="paging">
-                <SelectBoxComponent selectValue={selectValue} />
-              </div>
+              <SelectBoxComponent selectValue={selectValue} />
             </div>
           </div>
         </form>

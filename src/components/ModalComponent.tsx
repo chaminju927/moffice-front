@@ -10,12 +10,12 @@ import SelectBoxComponent from "./SelectBoxComponent";
 import CheckIcon from "@mui/icons-material/Check";
 import Typography from "@mui/material/Typography";
 
-export interface dataType {
-  no?: number;
+export type dataType = {
+  no: number;
   part: string;
   name: string;
   grade: string;
-}
+};
 function ModalComponent(): JSX.Element {
   useEffect(() => {
     //console.log(rows1);
@@ -46,7 +46,7 @@ function ModalComponent(): JSX.Element {
         <div className="popWrap">
           <h4 className="popTit">출장 신청 정보</h4>
         </div>
-        <section id="flexTable">
+        <section>
           <div id="tableContainer">
             <div className="item1 item-top">
               <p>출장명</p>

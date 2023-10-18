@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import MUITable from "@mui/material/Table";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
@@ -7,7 +7,7 @@ import TableCell from "@mui/material/TableCell";
 import SearchIcon from "@mui/icons-material/Search";
 import ButtonComponent from "./ButtonComponent";
 import { TableBody } from "@mui/material";
-import { dataType } from "./ModalComponent";
+import { dataType } from './ModalComponent';
 import CheckIcon from "@mui/icons-material/Check";
 
 interface CustomTableProps {
@@ -39,16 +39,8 @@ function ModalTableComponent({
 }): JSX.Element {
   const [table, setTable] = useState<boolean>(false);
   //const [selectedData, setSelectedData] = useState<dataType[]>();
-  useEffect(() => {
-    //  console.log(selectedType);
-  }, []);
 
-  function createData(
-    no: number,
-    part: string,
-    name: string,
-    grade: string
-  ): dataType {
+  function createData(no: number, part: string, name: string, grade: string) {
     return {
       no,
       part,
@@ -56,7 +48,7 @@ function ModalTableComponent({
       grade,
     };
   }
-  const rows1 = [
+  const rows1: dataType[] = [
     createData(20050301, "경영지원팀", "이재준", "대표이사"),
     createData(20190201, "제이니스", "박상영", "이사"),
     createData(20190502, "제품팀", "이승구", "프로"),
@@ -107,7 +99,6 @@ function ModalTableComponent({
                       btnName="선택"
                       searchTable={() => {
                         propFunction(row);
-                        // setSelect(true);
                       }}
                       icon={<CheckIcon sx={{ width: 18, marginRight: 0 }} />}
                     />
