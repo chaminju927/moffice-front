@@ -7,7 +7,7 @@ import TableCell from "@mui/material/TableCell";
 import SearchIcon from "@mui/icons-material/Search";
 import ButtonComponent from "./ButtonComponent";
 import { TableBody } from "@mui/material";
-import { dataType } from './ModalComponent';
+import { dataType } from "src/types/common";
 import CheckIcon from "@mui/icons-material/Check";
 
 interface CustomTableProps {
@@ -40,12 +40,17 @@ function ModalTableComponent({
   const [table, setTable] = useState<boolean>(false);
   //const [selectedData, setSelectedData] = useState<dataType[]>();
 
-  function createData(no: number, part: string, name: string, grade: string) {
+  function createData(
+    workerNo: number,
+    part: string,
+    name: string,
+    position: string
+  ) {
     return {
-      no,
+      workerNo,
       part,
       name,
-      grade,
+      position,
     };
   }
   const rows1: dataType[] = [
@@ -89,11 +94,11 @@ function ModalTableComponent({
           {selectedType === "결재자" || table ? (
             <TableBody>
               {rows1.map((row) => (
-                <TableRow key={row.no}>
-                  <TableCell>{row.no}</TableCell>
+                <TableRow key={row.workerNo}>
+                  <TableCell>{row.workerNo}</TableCell>
                   <TableCell>{row.part}</TableCell>
                   <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.grade}</TableCell>
+                  <TableCell>{row.position}</TableCell>
                   <TableCell>
                     <ButtonComponent
                       btnName="선택"

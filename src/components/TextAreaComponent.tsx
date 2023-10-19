@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { dataType } from "./ModalComponent";
+import { dataType } from "src/types/common";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 
@@ -29,10 +29,10 @@ function TextAreaComponent({
         <table className="textArea selectedBox">
           {tableData.map((data, index) => (
             <tr key={index}>
-              <td className="TableHead selectedNo" >{index + 1}차</td>
+              <td className="TableHead selectedNo">{index + 1}차</td>
 
               <td colSpan={4} className="selected">
-                {data.part} {data.name} {data.grade}
+                {data.part} {data.name} {data.position}
                 <IconButton onClick={deleteBtn}>
                   <DeleteIcon sx={{ width: 16, marginRight: 0 }} />
                 </IconButton>

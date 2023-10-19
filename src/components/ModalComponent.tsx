@@ -9,19 +9,16 @@ import TextAreaComponent from "./TextAreaComponent";
 import SelectBoxComponent from "./SelectBoxComponent";
 import CheckIcon from "@mui/icons-material/Check";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
+import { dataType, applyDataType } from "src/types/common";
 
-export type dataType = {
-  no: number;
-  part: string;
-  name: string;
-  grade: string;
-};
 function ModalComponent(): JSX.Element {
   useEffect(() => {
     //console.log(rows1);
   }, []);
   const [selectedData, setSelectedData] = useState<dataType>();
   const [selectedData2, setSelectedData2] = useState<dataType>();
+  const [applyData, setApplyData] = useState<applyDataType>();
 
   const selectValue = [
     { val: 1, name: "[국내]시스템패치" },
@@ -29,9 +26,31 @@ function ModalComponent(): JSX.Element {
     { val: 3, name: "[국내]외부일정" },
     { val: 4, name: "[국내]정기점검" },
   ];
+  const getType = () => {
+    console.log("getType");
+    //setApplyData(...applyData, workType: getType);
+  };
 
   const closeModal: (e: React.MouseEvent) => void = () => {
     window.close();
+    axios
+      .post("http://localhost:8080/worktrip", {
+        workType: applyData?.workType,
+        startDate: applyData?.startDate,
+        endDate: applyData?.endDate,
+        reason: applyData?.reason,
+        confirm: applyData?.confirm,
+        workerNo: applyData?.workerNo,
+        part: applyData?.part,
+        name: applyData?.name,
+        position: applyData?.position,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .then((error) => {
+        console.log(error);
+      });
   };
   const sendData = (data: dataType) => {
     setSelectedData(data);
@@ -52,7 +71,10 @@ function ModalComponent(): JSX.Element {
               <p>출장명</p>
             </div>
             <div className="item item-top">
-              <SelectBoxComponent selectValue={selectValue} />
+              <SelectBoxComponent
+                selectValue={selectValue}
+                getTypeFunction={getType}
+              />
             </div>
           </div>
           <div id="tableContainer">

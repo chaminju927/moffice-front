@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function ButtonComponent({
   searchTable,
+  search,
   btnName,
   icon,
 }: //selectedRowData,
@@ -11,6 +12,7 @@ function ButtonComponent({
   searchTable?: () => void;
   btnName: string;
   icon?: any;
+  search?: any;
   //selectedRowData?: any;
 }): JSX.Element {
   const mainTheme = createTheme({
@@ -83,7 +85,7 @@ function ButtonComponent({
         </ThemeProvider>
       </div>
     );
-  } else {
+  } else if (btnName === "신청") {
     return (
       <div>
         <ThemeProvider theme={mainTheme}>
@@ -93,6 +95,23 @@ function ButtonComponent({
             variant="contained"
             startIcon={icon}
             onClick={searchTable}
+          >
+            {btnName}
+          </Button>
+        </ThemeProvider>
+      </div>
+    );
+  } else {
+    // 메인 검색 버튼
+    return (
+      <div>
+        <ThemeProvider theme={mainTheme}>
+          <Button
+            size="medium"
+            color="primary"
+            variant="contained"
+            startIcon={icon}
+            onClick={search}
           >
             {btnName}
           </Button>

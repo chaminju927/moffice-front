@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -11,14 +11,22 @@ const theme = createTheme({
   },
 });
 function DateInputComponent(): JSX.Element {
+  const [startDate, setStartDate] = useState<any>();
+  const dateNow = new Date();
+  const today = dateNow.toISOString().slice(0, 10);
+
+  const setDate = (e) => {
+    setStartDate(e.target.value);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <div className="date-picker-container">
           <DatePicker
-            format="YYYY-MM-DD"
-            defaultValue={dayjs("2023-10-10")}
+            defaultValue={today}
             sx={{ width: 150 }}
+            onChange={setDate}
           />
         </div>
       </LocalizationProvider>

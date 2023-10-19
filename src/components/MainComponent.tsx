@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,16 +11,35 @@ import SelectBoxComponent from "./SelectBoxComponent";
 import SearchIcon from "@mui/icons-material/Search";
 import RadioBtnComponent from "./RadioBtnComponent";
 import NavComponent from "./NavComponent";
+import axios from "axios";
+import { applyType } from "src/types/common";
 
 function MainComponent(): JSX.Element {
+  //메인페이지 검색 후 state
+  const [searchData, setSearchData] = useState<applyType>();
+  //파라미터 state
+  const [paramData, setParamData] = useState<applyType>();
   //useEffect(() => {}, []);
+
+  const searchWorkType = () => {
+    // axios
+    // .get("http://localhost:8080/worktrip", {
+
+    // })
+    // .then((response) => {
+    //   console.log(response);
+    // })
+    // .then((error) => {
+    //   console.log(error);
+    // });
+    console.log("clicked");
+  };
 
   const selectValue = [
     { val: 1, name: "10개씩" },
     { val: 2, name: "20개씩" },
     { val: 3, name: "30개씩" },
   ];
-
   return (
     <div>
       <NavComponent />
@@ -57,6 +77,7 @@ function MainComponent(): JSX.Element {
                   <ButtonComponent
                     btnName="검색"
                     icon={<SearchIcon sx={{ width: 20 }} />}
+                    search={searchWorkType}
                   />
                 </div>
               </td>
