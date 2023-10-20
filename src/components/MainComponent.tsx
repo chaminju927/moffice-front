@@ -16,23 +16,42 @@ import { applyType } from "src/types/common";
 
 function MainComponent(): JSX.Element {
   //메인페이지 검색 후 state
-  const [searchData, setSearchData] = useState<applyType>();
+  // const [searchData, setSearchData] = useState<applyType>();
   //파라미터 state
-  const [paramData, setParamData] = useState<applyType>();
-  //useEffect(() => {}, []);
+  //const [paramData, setParamData] = useState<applyType>();
+  const [dateState1, setDateState1] = useState<string>();
+  const [dateState2, setDateState2] = useState<string>();
+  // useEffect(() => {
+  //   console.log(dateState1);
+  // }, [dateState1]);
 
   const searchWorkType = () => {
-    // axios
-    // .get("http://localhost:8080/worktrip", {
+    console.log(dateState1);
+    console.log(dateState2);
 
-    // })
-    // .then((response) => {
-    //   console.log(response);
-    // })
-    // .then((error) => {
-    //   console.log(error);
-    // });
+    const api = axios.create({
+      baseURL: "http://localhost:8080/worktrip",
+    });
+    api
+      .get("/list", {
+        params: {
+          startDate: dateState1,
+          endDate: dateState2,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .then((error) => {
+        console.log(error);
+      });
     console.log("clicked");
+  };
+  const getDate1 = (dateValue: string) => {
+    setDateState1(dateValue);
+  };
+  const getDate2 = (dateValue: string) => {
+    setDateState2(dateValue);
   };
 
   const selectValue = [
@@ -68,11 +87,11 @@ function MainComponent(): JSX.Element {
               <td>
                 <div className="dateControl">
                   <div>
-                    <DateInputComponent />
+                    <DateInputComponent getStartDate={getDate1} />
                   </div>
                   &nbsp;~
                   <div>
-                    <DateInputComponent />
+                    <DateInputComponent getEndDate={getDate2} />
                   </div>
                   <ButtonComponent
                     btnName="검색"

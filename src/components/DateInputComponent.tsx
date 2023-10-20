@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -10,13 +10,33 @@ const theme = createTheme({
     fontSize: 12,
   },
 });
-function DateInputComponent(): JSX.Element {
-  const [startDate, setStartDate] = useState<any>();
-  const dateNow = new Date();
-  const today = dateNow.toISOString().slice(0, 10);
 
-  const setDate = (e) => {
-    setStartDate(e.target.value);
+function DateInputComponent({
+  getStartDate, // MainComponent에서 보내는 콜백함수
+  getEndDate,
+}: {
+  getStartDate?: any;
+  getEndDate?: any;
+}): JSX.Element {
+  const [dateValue, setDateValue] = useState<any | string>();
+
+  // useEffect(() => {
+  //   // const dateNow = new Date();
+  //   // const today = dateNow.toISOString().slice(0, 10);
+  //   console.log(dateValue);
+  // }, [dateValue]);
+
+  const dateChange = (newValue: any) => {
+    const dateString = newValue.toISOString("yyyy-mm-dd").slice(0, 10);
+    console.log(dateString);
+    // setDateValue(dateString);
+    if (getStartDate) {
+      getStartDate(dateString);
+    } else if (getEndDate) {
+      getEndDate(dateString);
+    } else {
+      console.log("props안옴");
+    }
   };
 
   return (
@@ -24,9 +44,10 @@ function DateInputComponent(): JSX.Element {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <div className="date-picker-container">
           <DatePicker
-            defaultValue={today}
-            sx={{ width: 150 }}
-            onChange={setDate}
+            defaultValue={dayjs("2023-10-20")}
+            sx={{ width: 160 }}
+            value={dayjs(dateValue)}
+            onChange={dateChange}
           />
         </div>
       </LocalizationProvider>

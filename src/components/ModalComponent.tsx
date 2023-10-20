@@ -16,9 +16,9 @@ function ModalComponent(): JSX.Element {
   useEffect(() => {
     //console.log(rows1);
   }, []);
-  const [selectedData, setSelectedData] = useState<dataType>();
-  const [selectedData2, setSelectedData2] = useState<dataType>();
-  const [applyData, setApplyData] = useState<applyDataType>();
+  const [selectedData, setSelectedData] = useState<dataType>(); //결재자 선택
+  const [selectedData2, setSelectedData2] = useState<dataType>(); //참조자 선택
+  const [applyData, setApplyData] = useState<applyDataType>(); //post요청시 데이터
 
   const selectValue = [
     { val: 1, name: "[국내]시스템패치" },
@@ -26,10 +26,6 @@ function ModalComponent(): JSX.Element {
     { val: 3, name: "[국내]외부일정" },
     { val: 4, name: "[국내]정기점검" },
   ];
-  const getType = () => {
-    console.log("getType");
-    //setApplyData(...applyData, workType: getType);
-  };
 
   const closeModal: (e: React.MouseEvent) => void = () => {
     window.close();
@@ -53,10 +49,17 @@ function ModalComponent(): JSX.Element {
       });
   };
   const sendData = (data: dataType) => {
+    // 결재자 선택 콜백
     setSelectedData(data);
   };
   const sendData2 = (data: dataType) => {
+    //참조자 선택 콜백
     setSelectedData2(data);
+  };
+
+  const getType = () => {
+    console.log("getType");
+    //setApplyData(...applyData, workType: getType);
   };
 
   return (

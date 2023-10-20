@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 
 function SelectBoxComponent({
   selectValue,
-}: //getTypeFunction,
-{
+  getTypeFunction,
+}: {
   selectValue: any;
   getTypeFunction?: any;
 }) {
