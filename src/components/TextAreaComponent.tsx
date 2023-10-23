@@ -6,9 +6,11 @@ import IconButton from "@mui/material/IconButton";
 function TextAreaComponent({
   content,
   selectedData,
+  getReason,
 }: {
   content: string;
   selectedData?: dataType;
+  getReason?: any;
 }): JSX.Element {
   useEffect(() => {
     if (selectedData !== undefined) {
@@ -17,10 +19,16 @@ function TextAreaComponent({
   }, [selectedData]);
 
   const [tableData, setTableData] = useState<dataType[]>([]);
+  const [inputText, setInputText] = useState<string>();
 
   const deleteBtn: () => void = () => {
     setTableData([]);
     console.log(content);
+  };
+  const getText = (e) => {
+    //console.log(e.target.value);
+    setInputText(e.target.value);
+    getReason(inputText);
   };
 
   if (tableData.length > 0) {
@@ -45,7 +53,11 @@ function TextAreaComponent({
   } else {
     return (
       <div>
-        <textarea className="textArea" placeholder={content}></textarea>
+        <textarea
+          className="textArea"
+          placeholder={content}
+          onChange={getText}
+        ></textarea>
       </div>
     );
   }

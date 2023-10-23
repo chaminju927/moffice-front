@@ -6,11 +6,13 @@ export interface dataType {
 }
 
 export type applyType = {
-  workType?: string;
+  workType: string;
   startDate: string;
   endDate: string;
-  reason?: string;
-  confirm: boolean;
+  enrollDate?: string;
+  reason: string;
+  confirm?: boolean;
+  no?: number;
 };
 
 export type applyDataType = dataType & applyType;

@@ -28,7 +28,7 @@ const roundTheme = createTheme({
 
 function ButtonComponent({
   searchTable,  // ModalTable의 결재자 검색
-  search,
+  search, // Maincomponent에서 보냄
   btnName,
   icon,
 }: {

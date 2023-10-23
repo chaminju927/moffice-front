@@ -1,10 +1,4 @@
 import { useEffect, useState } from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import DateInputComponent from "./DateInputComponent";
 import ButtonComponent from "./ButtonComponent";
 import SelectBoxComponent from "./SelectBoxComponent";
@@ -12,28 +6,24 @@ import SearchIcon from "@mui/icons-material/Search";
 import RadioBtnComponent from "./RadioBtnComponent";
 import NavComponent from "./NavComponent";
 import axios from "axios";
-import { applyType } from "src/types/common";
+import { applyDataType } from "src/types/common";
+import MainTableComponent from "./MainTableComponent";
 
 function MainComponent(): JSX.Element {
-  //메인페이지 검색 후 state
-  // const [searchData, setSearchData] = useState<applyType>();
-  //파라미터 state
-  //const [paramData, setParamData] = useState<applyType>();
+  //메인페이지 검색 후 가져온 데이터
+  const [searchedData, setSearchedData] = useState<applyDataType[]>([]);
+
   const [dateState1, setDateState1] = useState<string>();
   const [dateState2, setDateState2] = useState<string>();
-  // useEffect(() => {
-  //   console.log(dateState1);
-  // }, [dateState1]);
+  const [renderState, setRenderState] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(searchedData);
+  }, [searchedData]);
 
   const searchWorkType = () => {
-    console.log(dateState1);
-    console.log(dateState2);
-
-    const api = axios.create({
-      baseURL: "http://localhost:8080/worktrip",
-    });
-    api
-      .get("/list", {
+    axios
+      .get("http://localhost:8080/worktrip/list", {
         params: {
           startDate: dateState1,
           endDate: dateState2,
@@ -41,6 +31,8 @@ function MainComponent(): JSX.Element {
       })
       .then((response) => {
         console.log(response.data);
+        setSearchedData([...searchedData, response.data]);
+        setRenderState(true);
       })
       .then((error) => {
         console.log(error);
@@ -52,6 +44,8 @@ function MainComponent(): JSX.Element {
   };
   const getDate2 = (dateValue: string) => {
     setDateState2(dateValue);
+    console.log(dateState1);
+    console.log(dateState2);
   };
 
   const selectValue = [
@@ -117,7 +111,11 @@ function MainComponent(): JSX.Element {
           </table>
 
           <div className="mainTable">
-            <div>
+            <MainTableComponent
+              renderState={renderState}
+              searchedData={searchedData}
+            />
+            {/* <div>
               <p>총 0건/ 0페이지</p>
             </div>
             <TableContainer>
@@ -133,22 +131,32 @@ function MainComponent(): JSX.Element {
                     <TableCell>결재상세</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    {/* <TableCell colSpan={11} align="center">
-                      조회된 데이터가 없습니다
-                    </TableCell> */}
-                  </TableRow>
-                </TableBody>
+                {renderState ? (
+                  <TableBody>
+                    {searchedData.map((row) => (
+                      <TableRow key={row.no}>
+                        <TableCell>{row.workType}</TableCell>
+                        <TableCell>{row.startDate}</TableCell>
+                        <TableCell>{row.endDate}</TableCell>
+                        <TableCell>{row.reason}</TableCell>
+                        <TableCell>{row.enrollDate}</TableCell>
+                        <TableCell>{row.confirm}</TableCell>
+                        <TableCell>{row.workerNo}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                ) : (
+                  <TableBody>
+                    <TableRow>
+                      <TableCell colSpan={7}>
+                        조회된 데이터가 없습니다.
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                )}
               </Table>
-            </TableContainer>
+            </TableContainer> */}
+
             <div className="tablePage">
               <SelectBoxComponent selectValue={selectValue} />
             </div>

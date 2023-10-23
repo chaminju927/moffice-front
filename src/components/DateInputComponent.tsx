@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -14,11 +14,15 @@ const theme = createTheme({
 function DateInputComponent({
   getStartDate, // MainComponent에서 보내는 콜백함수
   getEndDate,
+  applyStartDate,
+  applyEndDate,
 }: {
   getStartDate?: any;
   getEndDate?: any;
+  applyStartDate?: any;
+  applyEndDate?: any;
 }): JSX.Element {
-  const [dateValue, setDateValue] = useState<any | string>();
+  const [dateValue, setDateValue] = useState<string>();
 
   // useEffect(() => {
   //   // const dateNow = new Date();
@@ -26,16 +30,20 @@ function DateInputComponent({
   //   console.log(dateValue);
   // }, [dateValue]);
 
-  const dateChange = (newValue: any) => {
-    const dateString = newValue.toISOString("yyyy-mm-dd").slice(0, 10);
-    console.log(dateString);
-    // setDateValue(dateString);
+  const dateChange = (newValue) => {
+    // const dateString = newValue.toISOString("yyyy-mm-dd").slice(0, 10);
+    const inputDate = newValue.format("YYYY-MM-DD");
+    console.log(inputDate);
+    setDateValue(inputDate);
+
     if (getStartDate) {
-      getStartDate(dateString);
+      getStartDate(inputDate);
     } else if (getEndDate) {
-      getEndDate(dateString);
-    } else {
-      console.log("props안옴");
+      getEndDate(inputDate);
+    } else if (applyStartDate) {
+      applyStartDate(inputDate);
+    } else if (applyEndDate) {
+      applyEndDate(inputDate);
     }
   };
 

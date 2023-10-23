@@ -104,6 +104,7 @@ function ModalTableComponent({
                       btnName="선택"
                       searchTable={() => {
                         propFunction(row);
+                        console.log(row);
                       }}
                       icon={<CheckIcon sx={{ width: 18, marginRight: 0 }} />}
                     />

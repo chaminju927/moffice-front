@@ -18,28 +18,41 @@ function ModalComponent(): JSX.Element {
   }, []);
   const [selectedData, setSelectedData] = useState<dataType>(); //결재자 선택
   const [selectedData2, setSelectedData2] = useState<dataType>(); //참조자 선택
-  const [applyData, setApplyData] = useState<applyDataType>(); //post요청시 데이터
+  const [applyData, setApplyData] = useState<applyDataType>({
+    workType: "",
+    startDate: "",
+    endDate: "",
+    reason: "",
+    confirm: false,
+    workerNo: 0,
+    part: "",
+    name: "",
+    position: "",
+  }); //post요청시 보내는 데이터
 
+  useEffect(() => {
+    console.log(applyData);
+  }, [applyData]);
   const selectValue = [
-    { val: 1, name: "[국내]시스템패치" },
-    { val: 2, name: "[국내]영업활동" },
-    { val: 3, name: "[국내]외부일정" },
-    { val: 4, name: "[국내]정기점검" },
+    { value: 1, name: "[국내]시스템패치" },
+    { value: 2, name: "[국내]영업활동" },
+    { value: 3, name: "[국내]외부일정" },
+    { value: 4, name: "[국내]정기점검" },
   ];
 
   const closeModal: (e: React.MouseEvent) => void = () => {
     window.close();
     axios
       .post("http://localhost:8080/worktrip", {
-        workType: applyData?.workType,
-        startDate: applyData?.startDate,
-        endDate: applyData?.endDate,
-        reason: applyData?.reason,
-        confirm: applyData?.confirm,
-        workerNo: applyData?.workerNo,
-        part: applyData?.part,
-        name: applyData?.name,
-        position: applyData?.position,
+        workType: applyData.workType,
+        startDate: applyData.startDate,
+        endDate: applyData.endDate,
+        reason: applyData.reason,
+        confirm: applyData.confirm,
+        workerNo: applyData.workerNo,
+        part: applyData.part,
+        name: applyData.name,
+        position: applyData.position,
       })
       .then((response) => {
         console.log(response);
@@ -48,18 +61,42 @@ function ModalComponent(): JSX.Element {
         console.log(error);
       });
   };
+  // 결재자 선택
   const sendData = (data: dataType) => {
-    // 결재자 선택 콜백
     setSelectedData(data);
+    setApplyData({
+      ...applyData,
+      workerNo: data.workerNo,
+      name: data.name,
+      part: data.part,
+      position: data.position,
+    });
   };
+  //참조자 선택 콜백
   const sendData2 = (data: dataType) => {
-    //참조자 선택 콜백
     setSelectedData2(data);
   };
 
-  const getType = () => {
-    console.log("getType");
-    //setApplyData(...applyData, workType: getType);
+  // 출장명 선택
+  const getType = (value: string) => {
+    console.log(value);
+    setApplyData({ ...applyData, workType: value });
+  };
+
+  //신청시 날짜 선택
+  const applyDateFunction1 = (inputDate: string) => {
+    console.log();
+    setApplyData({ ...applyData, startDate: inputDate });
+  };
+  const applyDateFunction2 = (inputDate: string) => {
+    console.log();
+    setApplyData({ ...applyData, endDate: inputDate });
+  };
+
+  // 사유 입력
+  const applyReason = (inputText) => {
+    console.log(inputText);
+    setApplyData({ ...applyData, reason: inputText });
   };
 
   return (
@@ -87,11 +124,11 @@ function ModalComponent(): JSX.Element {
             <div className="item dateContainer">
               <div className="dateControl">
                 <div className="dateContainer">
-                  <DateInputComponent />
+                  <DateInputComponent applyStartDate={applyDateFunction1} />
                 </div>
                 ~
                 <div className="dateContainer">
-                  <DateInputComponent />
+                  <DateInputComponent applyEndDate={applyDateFunction2} />
                 </div>
                 <div className="checkAllday dateContainer">
                   <FormGroup>
@@ -121,7 +158,10 @@ function ModalComponent(): JSX.Element {
               <p className="infoTag">신청 사유</p>
             </div>
             <div className="item">
-              <TextAreaComponent content="신청사유를 입력하세요" />
+              <TextAreaComponent
+                content="신청사유를 입력하세요"
+                getReason={applyReason}
+              />
             </div>
           </div>
 
