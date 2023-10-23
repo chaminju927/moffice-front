@@ -6,6 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { applyDataType } from "src/types/common";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 
 function MainTableComponent({
   renderState,
@@ -30,9 +32,10 @@ function MainTableComponent({
               <TableCell>등록일시</TableCell>
               <TableCell>결재</TableCell>
               <TableCell>결재상세</TableCell>
+              <TableCell>취소</TableCell>
             </TableRow>
           </TableHead>
-          {renderState ? (
+          {renderState && searchedData ? (
             <TableBody>
               {searchedData.map((row) => (
                 <TableRow key={row.no}>
@@ -42,14 +45,21 @@ function MainTableComponent({
                   <TableCell>{row.reason}</TableCell>
                   <TableCell>{row.enrollDate}</TableCell>
                   <TableCell>{row.confirm}</TableCell>
-                  <TableCell>{row.workerNo}</TableCell>
+                  <TableCell>
+                    {row.workerNo} {row.part} {row.name} {row.position}
+                  </TableCell>
+                  <TableCell>
+                    <IconButton>
+                      <DeleteIcon sx={{ width: 16, marginRight: 0 }} />
+                    </IconButton>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           ) : (
             <TableBody>
               <TableRow>
-                <TableCell colSpan={7}>조회된 데이터가 없습니다.</TableCell>
+                <TableCell colSpan={8}>조회된 데이터가 없습니다.</TableCell>
               </TableRow>
             </TableBody>
           )}
