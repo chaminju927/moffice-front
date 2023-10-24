@@ -1,57 +1,96 @@
-import { useEffect, useState } from "react";
-import Table from "@mui/material/Table";
+import TableContainer from "@mui/material/TableContainer";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { applyDataType } from "src/types/common";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { applyDataType } from "src/types/common";
-import DeleteIcon from "@mui/icons-material/Delete";
-import IconButton from "@mui/material/IconButton";
+import { useEffect, useRef } from "react";
+import Table from "@mui/material/Table";
+import axios from "axios";
 
 function MainTableComponent({
   renderState,
   searchedData,
-}: {
+  noData,
+  setNoData,
+  setSearchedData,
+} :
+{
   renderState: boolean;
   searchedData: applyDataType[];
+  noData?: string;
+  setNoData?: any;
+  setSearchedData?: any;
 }): JSX.Element {
+  useEffect(() => {
+    console.log(searchedData);
+    console.log(renderState);
+    console.log(noData);
+  }, [searchedData, renderState, noData]);
+
+  const deleteReq = (no?: number) => {
+    const deleteNo = no;
+    axios
+      .delete(`http://localhost:8080/worktrip/${deleteNo}`)
+      .then((response) => {
+        console.log(response);
+        if (searchedData.length === 1) {
+          setNoData("해당 기간 내 신청 건이 없습니다.");
+        } else {
+          const test = searchedData.filter((el) => {   ///filter함수 숙지!!!!!!!!!!!!!!!
+            return el.no !== deleteNo;
+          });
+          //console.log(test);
+          setSearchedData(test);
+        }
+      })
+      .then((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <div>
-        <p>총 0건/ 0페이지</p>
+        <p>총 {searchedData.length}건</p>
       </div>
       <TableContainer>
         <Table className="table horizontal">
           <TableHead>
-            <TableRow>
+            <TableRow className="TableRow">
               <TableCell>유형</TableCell>
-              <TableCell>시작일시</TableCell>
-              <TableCell>종료일시</TableCell>
+              <TableCell>시작일</TableCell>
+              <TableCell>종료일</TableCell>
               <TableCell>사유</TableCell>
               <TableCell>등록일시</TableCell>
               <TableCell>결재</TableCell>
-              <TableCell>결재상세</TableCell>
+              <TableCell>결재자</TableCell>
               <TableCell>취소</TableCell>
             </TableRow>
           </TableHead>
-          {renderState && searchedData ? (
+          {renderState && searchedData && !noData ? (
             <TableBody>
               {searchedData.map((row) => (
-                <TableRow key={row.no}>
+                <TableRow key={row.no} className="TableRow">
                   <TableCell>{row.workType}</TableCell>
                   <TableCell>{row.startDate}</TableCell>
                   <TableCell>{row.endDate}</TableCell>
                   <TableCell>{row.reason}</TableCell>
                   <TableCell>{row.enrollDate}</TableCell>
-                  <TableCell>{row.confirm}</TableCell>
+                  <TableCell>{row.confirm ? "O" : "X"}</TableCell>
                   <TableCell>
-                    {row.workerNo} {row.part} {row.name} {row.position}
+                    <span>
+                      {row.workerNo} {row.part} {row.name} {row.position}
+                    </span>
                   </TableCell>
-                  <TableCell>
-                    <IconButton>
-                      <DeleteIcon sx={{ width: 16, marginRight: 0 }} />
-                    </IconButton>
+                  <TableCell key={row.no}>
+                    <DeleteIcon
+                      sx={{ width: 16, marginRight: 0 }}
+                      onClick={() => deleteReq(row.no)}
+                      id="deleteNo"
+                      cursor="pointer"
+                    />
                   </TableCell>
                 </TableRow>
               ))}
@@ -59,7 +98,9 @@ function MainTableComponent({
           ) : (
             <TableBody>
               <TableRow>
-                <TableCell colSpan={8}>조회된 데이터가 없습니다.</TableCell>
+                <TableCell colSpan={8} align="center">
+                  {noData}
+                </TableCell>
               </TableRow>
             </TableBody>
           )}

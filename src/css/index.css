@@ -43,6 +43,9 @@ body .container .header-container .floatL .notice {
 }
 
 /* MainComponent - form */
+.mainForm {
+  /* MainTableComponent*/
+}
 .mainForm .mainH2 {
   margin-top: 20px;
   margin-left: 20%;
@@ -65,6 +68,9 @@ body .container .header-container .floatL .notice {
   display: inline-block;
   margin-right: 10px;
   vertical-align: middle;
+}
+.mainForm .TableRow :nth-child(n) {
+  text-align: center;
 }
 .mainForm .mainTable {
   /* mainComponent Table */
@@ -280,6 +286,7 @@ tr {
 /* new Window */
 .popBackground {
   background-color: white;
+  padding: 5px;
 }
 .popBackground .popWrap {
   height: 30px;
@@ -296,7 +303,8 @@ tr {
 }
 .popBackground .popBtnWrap {
   display: flex;
-  margin-top: 25px;
+  margin-top: 30px;
+  margin-bottom: 20px;
   margin-left: 350px;
 }
 
@@ -307,10 +315,6 @@ tr {
 
 .th {
   background-color: #ebeef3;
-}
-
-.popWrap {
-  padding: 16px 20px;
 }
 
 .checkAllday {

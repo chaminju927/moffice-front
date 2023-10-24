@@ -188,7 +188,7 @@ function ModalComponent(): JSX.Element {
               />
             </div>
           </div>
-          <div id="tableContainer" className="listBox">
+          {/* <div id="tableContainer" className="listBox">
             <div className="item1">
               <p>참조자 목록</p>
             </div>
@@ -198,8 +198,8 @@ function ModalComponent(): JSX.Element {
                 propFunction={sendData2}
               />
             </div>
-          </div>
-          <div id="tableContainer">
+          </div> */}
+          {/* <div id="tableContainer">
             <div className="item1">
               <p>참조자 선택</p>
             </div>
@@ -211,7 +211,7 @@ function ModalComponent(): JSX.Element {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
         </section>
 
         <div className="popBtnWrap" onClick={closeModal}>

@@ -12,14 +12,14 @@ import MainTableComponent from "./MainTableComponent";
 function MainComponent(): JSX.Element {
   //메인페이지 검색 후 가져온 데이터
   const [searchedData, setSearchedData] = useState<applyDataType[]>([]);
-
+  // 날짜 입력 state
   const [dateState1, setDateState1] = useState<string>();
   const [dateState2, setDateState2] = useState<string>();
+  // 메인 테이블에 보낼 props state
   const [renderState, setRenderState] = useState<boolean>(false);
+  const [noData, setNoData] = useState<string>("조회된 데이터가 없습니다.");
 
-  useEffect(() => {
-    console.log(searchedData[0]);
-  }, [searchedData]);
+  useEffect(() => {}, []);
 
   const searchWorkType = () => {
     axios
@@ -31,13 +31,18 @@ function MainComponent(): JSX.Element {
       })
       .then((response) => {
         console.log(response.data);
-        setSearchedData([...searchedData, response.data]);
-        setRenderState(true);
+
+        if (response.data.length === 0) {
+          setNoData("해당 기간 내 신청 건이 없습니다.");
+        } else {
+          setSearchedData(response.data);
+          setRenderState(true);
+          setNoData("");
+        }
       })
       .then((error) => {
         console.log(error);
       });
-    console.log("clicked");
   };
   const getDate1 = (dateValue: string) => {
     setDateState1(dateValue);
@@ -47,7 +52,13 @@ function MainComponent(): JSX.Element {
     console.log(dateState1);
     console.log(dateState2);
   };
-
+  const onRemove = (no) => {
+    // if(searchedData.no === no){
+    //   setSearchedData([
+    //    ...searchedData,
+    //   ]);
+    //}
+  };
   const selectValue = [
     { val: 1, name: "10개씩" },
     { val: 2, name: "20개씩" },
@@ -114,8 +125,10 @@ function MainComponent(): JSX.Element {
             <MainTableComponent
               renderState={renderState}
               searchedData={searchedData}
+              noData={noData}
+              setNoData={setNoData}
+               setSearchedData={setSearchedData}
             />
-
             <div className="tablePage">
               <SelectBoxComponent selectValue={selectValue} />
             </div>

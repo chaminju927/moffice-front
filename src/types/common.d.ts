@@ -15,4 +15,8 @@ export type applyType = {
   no?: number;
 };
 
+// export type noResType = {
+//   response?: string;
+// };
+
 export type applyDataType = dataType & applyType;
