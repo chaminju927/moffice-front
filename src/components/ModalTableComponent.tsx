@@ -93,7 +93,7 @@ function ModalTableComponent({
 
           {selectedType === "결재자" || table ? (
             <TableBody>
-              {rows1.map((row) => (
+              {rows1.map((row: dataType) => (
                 <TableRow key={row.workerNo}>
                   <TableCell>{row.workerNo}</TableCell>
                   <TableCell>{row.part}</TableCell>

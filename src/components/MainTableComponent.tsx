@@ -5,7 +5,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { useEffect, useRef } from "react";
+import { SetStateAction, useEffect, Dispatch } from "react";
 import Table from "@mui/material/Table";
 import axios from "axios";
 
@@ -15,13 +15,12 @@ function MainTableComponent({
   noData,
   setNoData,
   setSearchedData,
-} :
-{
+}: {
   renderState: boolean;
   searchedData: applyDataType[];
   noData?: string;
-  setNoData?: any;
-  setSearchedData?: any;
+  setNoData: Dispatch<SetStateAction<string>>;
+  setSearchedData: Dispatch<SetStateAction<applyDataType[]>>;
 }): JSX.Element {
   useEffect(() => {
     console.log(searchedData);
@@ -38,11 +37,11 @@ function MainTableComponent({
         if (searchedData.length === 1) {
           setNoData("해당 기간 내 신청 건이 없습니다.");
         } else {
-          const test = searchedData.filter((el) => {   ///filter함수 숙지!!!!!!!!!!!!!!!
+          const reRender = searchedData.filter((el) => {
             return el.no !== deleteNo;
           });
           //console.log(test);
-          setSearchedData(test);
+          setSearchedData(reRender);
         }
       })
       .then((error) => {

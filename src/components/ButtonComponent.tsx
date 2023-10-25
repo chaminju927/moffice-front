@@ -1,6 +1,7 @@
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-//import { useCallback, useMemo, useState } from "react";
+//import { useMemo, useState } from "react";
+import React from "react";
 
 const mainTheme = createTheme({
   palette: {
@@ -27,21 +28,16 @@ const roundTheme = createTheme({
 });
 
 function ButtonComponent({
-  searchTable,  // ModalTable의 결재자 검색
+  searchTable, // ModalTable의 결재자 검색
   search, // Maincomponent에서 보냄
   btnName,
   icon,
 }: {
   searchTable?: () => void;
   btnName: string;
-  icon?: any;
-  search?: any;
+  icon?: React.ReactNode;
+  search?: () => void;
 }): JSX.Element {
-  // const Select = useCallback(() => {
-  //   searchTable?.(); //optional chaining
-  //   //console.log(selectedRowData);
-  // }, [searchTable]);
-
   if (btnName === "선택") {
     return (
       <div>

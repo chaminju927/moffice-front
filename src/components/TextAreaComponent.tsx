@@ -10,7 +10,7 @@ function TextAreaComponent({
 }: {
   content: string;
   selectedData?: dataType;
-  getReason?: any;
+  getReason: (inputText: string) => void;
 }): JSX.Element {
   useEffect(() => {
     if (selectedData !== undefined) {
@@ -19,14 +19,13 @@ function TextAreaComponent({
   }, [selectedData]);
 
   const [tableData, setTableData] = useState<dataType[]>([]);
-  const [inputText, setInputText] = useState<string>();
+  const [inputText, setInputText] = useState<string>("");
 
   const deleteBtn: () => void = () => {
     setTableData([]);
     console.log(content);
   };
-  const getText = (e) => {
-    //console.log(e.target.value);
+  const getText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputText(e.target.value);
     getReason(inputText);
   };

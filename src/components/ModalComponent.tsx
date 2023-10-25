@@ -9,13 +9,10 @@ import TextAreaComponent from "./TextAreaComponent";
 import SelectBoxComponent from "./SelectBoxComponent";
 import CheckIcon from "@mui/icons-material/Check";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { dataType, applyDataType } from "src/types/common";
 
 function ModalComponent(): JSX.Element {
-  useEffect(() => {
-    //console.log(rows1);
-  }, []);
   const [selectedData, setSelectedData] = useState<dataType>(); //결재자 선택
   const [selectedData2, setSelectedData2] = useState<dataType>(); //참조자 선택
   const [applyData, setApplyData] = useState<applyDataType>({
@@ -33,11 +30,12 @@ function ModalComponent(): JSX.Element {
   useEffect(() => {
     console.log(applyData);
   }, [applyData]);
+
   const selectValue = [
-    { value: 1, name: "[국내]시스템패치" },
-    { value: 2, name: "[국내]영업활동" },
-    { value: 3, name: "[국내]외부일정" },
-    { value: 4, name: "[국내]정기점검" },
+    { val: 1, name: "[국내]시스템패치" },
+    { val: 2, name: "[국내]영업활동" },
+    { val: 3, name: "[국내]외부일정" },
+    { val: 4, name: "[국내]정기점검" },
   ];
 
   const closeModal: (e: React.MouseEvent) => void = () => {
@@ -54,7 +52,7 @@ function ModalComponent(): JSX.Element {
         name: applyData.name,
         position: applyData.position,
       })
-      .then((response) => {
+      .then((response: AxiosResponse) => {
         console.log(response);
       })
       .then((error) => {
@@ -94,7 +92,7 @@ function ModalComponent(): JSX.Element {
   };
 
   // 사유 입력
-  const applyReason = (inputText) => {
+  const applyReason = (inputText: string) => {
     console.log(inputText);
     setApplyData({ ...applyData, reason: inputText });
   };
@@ -185,6 +183,9 @@ function ModalComponent(): JSX.Element {
               <TextAreaComponent
                 content="결재자를 선택해주세요."
                 selectedData={selectedData}
+                getReason={function (inputText: string): void {
+                  throw new Error("Function not implemented.");
+                }}
               />
             </div>
           </div>

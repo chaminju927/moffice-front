@@ -5,14 +5,17 @@ function SelectBoxComponent({
   selectValue,
   getTypeFunction,
 }: {
-  selectValue: any;
-  getTypeFunction?: any;
+  selectValue: {
+    val: number;
+    name: string;
+  }[];
+  getTypeFunction: (name: string) => void;
 }) {
   useEffect(() => {
     //getTypeFunction();
   }, []);
-  const inputType = (e) => {
-   // console.log(e.target.value);
+  const inputType = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
     getTypeFunction(e.target.value);
   };
 
@@ -20,7 +23,7 @@ function SelectBoxComponent({
     <div>
       <select id="selectView" onChange={inputType}>
         {selectValue.map((el) => {
-          return <option value={el.val}>{el.name}</option>;
+          return <option value={el.name}>{el.name}</option>;
         })}
       </select>
     </div>

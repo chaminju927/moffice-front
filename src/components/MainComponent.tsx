@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import DateInputComponent from "./DateInputComponent";
 import ButtonComponent from "./ButtonComponent";
-import SelectBoxComponent from "./SelectBoxComponent";
+//import SelectBoxComponent from "./SelectBoxComponent";
 import SearchIcon from "@mui/icons-material/Search";
 import RadioBtnComponent from "./RadioBtnComponent";
 import NavComponent from "./NavComponent";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { applyDataType } from "src/types/common";
 import MainTableComponent from "./MainTableComponent";
 
@@ -19,9 +19,9 @@ function MainComponent(): JSX.Element {
   const [renderState, setRenderState] = useState<boolean>(false);
   const [noData, setNoData] = useState<string>("조회된 데이터가 없습니다.");
 
-  useEffect(() => {}, []);
+  //useEffect(() => {}, []);
 
-  const searchWorkType = () => {
+  const searchWorkType: () => void = () => {
     axios
       .get("http://localhost:8080/worktrip/list", {
         params: {
@@ -29,9 +29,8 @@ function MainComponent(): JSX.Element {
           endDate: dateState2,
         },
       })
-      .then((response) => {
+      .then((response: AxiosResponse) => {
         console.log(response.data);
-
         if (response.data.length === 0) {
           setNoData("해당 기간 내 신청 건이 없습니다.");
         } else {
@@ -52,18 +51,11 @@ function MainComponent(): JSX.Element {
     console.log(dateState1);
     console.log(dateState2);
   };
-  const onRemove = (no) => {
-    // if(searchedData.no === no){
-    //   setSearchedData([
-    //    ...searchedData,
-    //   ]);
-    //}
-  };
-  const selectValue = [
-    { val: 1, name: "10개씩" },
-    { val: 2, name: "20개씩" },
-    { val: 3, name: "30개씩" },
-  ];
+  // const selectValue = [
+  //   { val: 1, name: "10개씩" },
+  //   { val: 2, name: "20개씩" },
+  //   { val: 3, name: "30개씩" },
+  // ];
   return (
     <div>
       <NavComponent />
@@ -127,11 +119,11 @@ function MainComponent(): JSX.Element {
               searchedData={searchedData}
               noData={noData}
               setNoData={setNoData}
-               setSearchedData={setSearchedData}
+              setSearchedData={setSearchedData}
             />
-            <div className="tablePage">
+            {/* <div className="tablePage">
               <SelectBoxComponent selectValue={selectValue} />
-            </div>
+            </div> */}
           </div>
         </form>
       </div>
