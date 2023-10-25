@@ -38,6 +38,8 @@ function MainTableComponent({
           setNoData("해당 기간 내 신청 건이 없습니다.");
         } else {
           const reRender = searchedData.filter((el) => {
+            console.log(el);
+
             return el.no !== deleteNo;
           });
           //console.log(test);

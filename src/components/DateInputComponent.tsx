@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -27,7 +27,7 @@ function DateInputComponent({
   // }, [dateValue]);
 
   const dateChange = (newValue: Dayjs) => {
-    const inputDate: string = newValue!.format("YYYY-MM-DD");
+    const inputDate: string = newValue.format("YYYY-MM-DD");
     console.log(inputDate);
     setDateValue(inputDate);
 

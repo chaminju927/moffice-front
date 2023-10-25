@@ -15,7 +15,7 @@ function MainComponent(): JSX.Element {
   // 날짜 입력 state
   const [dateState1, setDateState1] = useState<string>();
   const [dateState2, setDateState2] = useState<string>();
-  // 메인 테이블에 보낼 props state
+  // 메인 테이블에 보낼 state
   const [renderState, setRenderState] = useState<boolean>(false);
   const [noData, setNoData] = useState<string>("조회된 데이터가 없습니다.");
 
